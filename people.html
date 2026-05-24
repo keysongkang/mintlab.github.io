@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MINT Lab | People</title>
+  <style>
+    :root {
+      --bg: #f6fbf7;
+      --surface: #ffffff;
+      --line: #d8eadf;
+      --ink: #10201a;
+      --muted: #5f7168;
+      --green: #008c3a;
+      --green-soft: #dff5e7;
+      --radius: 24px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(0, 140, 58, .10), transparent 34rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(246,251,247,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+      z-index: 10;
+    }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    header { padding: 90px 0 44px; }
+
+    .kicker {
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    h1 {
+      margin: 14px 0 18px;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: .92;
+      letter-spacing: -.08em;
+    }
+
+    .lead {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .section-title {
+      margin: 48px 0 20px;
+      font-size: 2rem;
+      letter-spacing: -.05em;
+    }
+
+    .pi-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 26px;
+      box-shadow: 0 18px 48px rgba(0,0,0,.05);
+    }
+
+    .photo {
+      aspect-ratio: 1 / 1;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 50% 24%, rgba(0,140,58,.22) 0 18%, transparent 19%),
+        linear-gradient(150deg, #ffffff, #dff5e7);
+      border: 1px solid var(--line);
+    }
+
+    .pi-card h2 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: -.05em;
+    }
+
+    .role {
+      color: var(--green);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .bio {
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .person {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 10px 32px rgba(0,0,0,.04);
+    }
+
+    .person-photo {
+      aspect-ratio: 1 / 1;
+      background:
+        radial-gradient(circle at 50% 24%, rgba(0,140,58,.2) 0 18%, transparent 19%),
+        linear-gradient(150deg, #f4fff7, #dff5e7);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .person-body { padding: 20px; }
+    .person h3 { margin: 0; font-size: 1.16rem; letter-spacing: -.03em; }
+    .person p { margin: 6px 0 0; color: var(--muted); }
+    .topic { margin-top: 12px; color: var(--green); font-weight: 800; font-size: .92rem; }
+
+    .alumni {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .alumni ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      margin-top: 80px;
+      padding: 32px 0;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .pi-card, .people-grid { grid-template-columns: 1fr; }
+      .nav-inner { gap: 16px; }
+      .nav-links { gap: 14px; font-size: .92rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="Logo.png" alt="MINT Lab logo" />
+        <span>MINT Lab</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="publications.html">Publications</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <div class="kicker">People</div>
+      <h1>Our research team.</h1>
+      <p class="lead">MINT Lab brings together researchers interested in materials theory, informatics, atomistic simulation, machine learning, and AI for science.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2 class="section-title">Principal Investigator</h2>
+      <article class="pi-card">
+        <div class="photo"></div>
+        <div>
+          <h2>Prof. Name</h2>
+          <div class="role">Principal Investigator · Materials Informatics & Theory Laboratory</div>
+          <p class="bio">Prof. Name leads MINT Lab, focusing on computational materials science, materials informatics, atomistic modeling, and machine learning approaches for materials discovery. Replace this paragraph with the actual PI biography.</p>
+          <div class="links">
+            <a class="button" href="mailto:professor@example.edu">Email</a>
+            <a class="button" href="#">Google Scholar</a>
+            <a class="button" href="#">CV</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2 class="section-title">Graduate Students</h2>
+      <div class="people-grid">
+        <article class="person">
+          <div class="person-photo"></div>
+          <div class="person-body">
+            <h3>Student Name</h3>
+            <p>Ph.D. Student</p>
+            <div class="topic">Graph neural networks for materials</div>
+          </div>
+        </article>
+        <article class="person">
+          <div class="person-photo"></div>
+          <div class="person-body">
+            <h3>Student Name</h3>
+            <p>M.S. Student</p>
+            <div class="topic">First-principles simulation</div>
+          </div>
+        </article>
+        <article class="person">
+          <div class="person-photo"></div>
+          <div class="person-body">
+            <h3>Student Name</h3>
+            <p>M.S. Student</p>
+            <div class="topic">High-throughput screening</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Undergraduate Researchers</h2>
+      <div class="people-grid">
+        <article class="person">
+          <div class="person-photo"></div>
+          <div class="person-body">
+            <h3>Student Name</h3>
+            <p>Undergraduate Intern</p>
+            <div class="topic">AI for science</div>
+          </div>
+        </article>
+        <article class="person">
+          <div class="person-photo"></div>
+          <div class="person-body">
+            <h3>Student Name</h3>
+            <p>Undergraduate Intern</p>
+            <div class="topic">Data visualization</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Alumni</h2>
+      <div class="alumni">
+        <ul>
+          <li>Alumni Name — Current position or affiliation</li>
+          <li>Alumni Name — Current position or affiliation</li>
+          <li>Alumni Name — Current position or affiliation</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      MINT Lab · Materials Informatics & Theory Laboratory
+    </div>
+  </footer>
+</body>
+</html>
