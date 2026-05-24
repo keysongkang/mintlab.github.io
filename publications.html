@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MINT Lab | Publications</title>
+  <style>
+    :root {
+      --bg: #f6fbf7;
+      --surface: #ffffff;
+      --line: #d8eadf;
+      --ink: #10201a;
+      --muted: #5f7168;
+      --green: #008c3a;
+      --green-soft: #dff5e7;
+      --radius: 22px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(246,251,247,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+      z-index: 10;
+    }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    header {
+      padding: 90px 0 40px;
+    }
+
+    .kicker {
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    h1 {
+      margin: 14px 0 18px;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: .92;
+      letter-spacing: -.08em;
+    }
+
+    .lead {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .year-block {
+      margin-bottom: 44px;
+    }
+
+    .year-title {
+      margin: 0 0 18px;
+      color: var(--green);
+      font-size: 1.8rem;
+      letter-spacing: -.05em;
+    }
+
+    .paper {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 14px;
+      box-shadow: 0 10px 32px rgba(0,0,0,.04);
+    }
+
+    .paper h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+      letter-spacing: -.03em;
+    }
+
+    .authors {
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .venue {
+      color: var(--green);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      margin-top: 80px;
+      padding: 32px 0;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="Logo.png" alt="MINT Lab logo" />
+        <span>MINT Lab</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="people.html">People</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <div class="kicker">Publications</div>
+      <h1>Research publications.</h1>
+      <p class="lead">Representative publications from MINT Lab in materials informatics, atomistic machine learning, and computational materials science.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="year-block">
+      <h2 class="year-title">2026</h2>
+
+      <article class="paper">
+        <h3>Graph Learning Frameworks for Functional Materials Discovery</h3>
+        <div class="authors">Author A, Author B, K. Kang</div>
+        <div class="venue">Nature Computational Science</div>
+        <div class="links">
+          <a class="button" href="#">Paper</a>
+          <a class="button" href="#">Code</a>
+          <a class="button" href="#">arXiv</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3>Autonomous Screening Pipelines for Sustainable Materials</h3>
+        <div class="authors">Author A, Author B, K. Kang</div>
+        <div class="venue">NeurIPS AI for Science Workshop</div>
+        <div class="links">
+          <a class="button" href="#">Paper</a>
+          <a class="button" href="#">Dataset</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2025</h2>
+
+      <article class="paper">
+        <h3>Interpretable Materials Informatics from Atomistic Descriptors</h3>
+        <div class="authors">Author A, Author B, K. Kang</div>
+        <div class="venue">Advanced Materials</div>
+        <div class="links">
+          <a class="button" href="#">Paper</a>
+          <a class="button" href="#">Supplementary</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3>Machine Learning Potentials for Complex Crystal Systems</h3>
+        <div class="authors">Author A, Author B, K. Kang</div>
+        <div class="venue">Physical Review Materials</div>
+        <div class="links">
+          <a class="button" href="#">Paper</a>
+          <a class="button" href="#">GitHub</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      MINT Lab · Materials Informatics & Theory Laboratory
+    </div>
+  </footer>
+</body>
+</html>
