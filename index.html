@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Intelligent Systems Lab</title>
+  <meta name="description" content="A modern engineering research laboratory website for research, publications, people, and recruitment." />
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-soft: #eef3f8;
+      --text: #111827;
+      --muted: #5f6b7a;
+      --line: #dbe3ee;
+      --primary: #0b1f3a;
+      --primary-soft: #12345f;
+      --accent: #2f80ed;
+      --accent-soft: #d8e9ff;
+      --shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 249, 252, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(219, 227, 238, 0.8);
+    }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 12px 28px rgba(47, 128, 237, 0.25);
+    }
+
+    .brand span:last-child {
+      font-size: 1.02rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-button {
+      display: none;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 9px 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 92px 0 64px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -160px -160px auto auto;
+      width: 520px;
+      height: 520px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(47,128,237,.22), rgba(47,128,237,0) 62%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--primary-soft);
+      background: rgba(255,255,255,0.74);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 22px 0 18px;
+      max-width: 780px;
+      font-size: clamp(3rem, 6vw, 5.7rem);
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+      color: var(--primary);
+    }
+
+    .lead {
+      max-width: 640px;
+      font-size: clamp(1.04rem, 1.55vw, 1.24rem);
+      color: var(--muted);
+      margin: 0 0 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 16px 40px rgba(11,31,58,.20);
+    }
+
+    .button.secondary {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--primary);
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, #ffffff, #edf4ff);
+      border: 1px solid rgba(219, 227, 238, .95);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .visual {
+      min-height: 460px;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(47,128,237,.5), transparent 28%),
+        radial-gradient(circle at 78% 28%, rgba(18,52,95,.55), transparent 30%),
+        radial-gradient(circle at 50% 82%, rgba(47,128,237,.22), transparent 34%),
+        linear-gradient(135deg, #061528, #0b1f3a 52%, #163f75);
+    }
+
+    .network {
+      position: absolute;
+      inset: 0;
+      opacity: .84;
+      background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: radial-gradient(circle at center, #000, transparent 78%);
+    }
+
+    .floating-panel {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 26px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 22px;
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(18px);
+      color: #fff;
+      padding: 22px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .metric {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.12);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.45rem;
+      letter-spacing: -0.05em;
+    }
+
+    .metric span {
+      color: rgba(255,255,255,.72);
+      font-size: .86rem;
+    }
+
+    section {
+      padding: 74px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .76rem;
+    }
+
+    h2 {
+      margin: 7px 0 0;
+      font-size: clamp(2rem, 3.2vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      color: var(--primary);
+    }
+
+    .section-head p {
+      max-width: 500px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.05);
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .publication-list, .news-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .publication {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 18px;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+
+    .pub-year {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .publication h3 {
+      margin: 0 0 6px;
+      font-size: 1.07rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .publication p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .tag {
+      white-space: nowrap;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--primary-soft);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .person {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .avatar {
+      aspect-ratio: 1 / 1;
+      background:
+        radial-gradient(circle at 50% 25%, #d8e9ff 0 18%, transparent 19%),
+        linear-gradient(160deg, #edf4ff, #dbe3ee);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .person-body {
+      padding: 18px;
+    }
+
+    .person h3 {
+      margin: 0;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+    }
+
+    .person p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 18px;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+
+    .date {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .news-item h3 {
+      margin: 0 0 6px;
+      color: var(--primary);
+    }
+
+    .news-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .join {
+      background: var(--primary);
+      color: #fff;
+      border-radius: var(--radius-xl);
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .join::after {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 999px;
+      background: rgba(47, 128, 237, .28);
+      right: -110px;
+      top: -120px;
+    }
+
+    .join h2, .join p, .join a {
+      position: relative;
+      z-index: 1;
+    }
+
+    .join h2 {
+      color: #fff;
+      margin: 0 0 12px;
+    }
+
+    .join p {
+      max-width: 650px;
+      margin: 0;
+      color: rgba(255,255,255,.76);
+    }
+
+    footer {
+      padding: 46px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .join {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3, .people-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .publication {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 74px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 18px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-button {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .visual {
+        min-height: 360px;
+      }
+
+      .metrics, .grid-3, .people-grid, .news-item {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .join {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Lab home">
+        <span class="brand-mark"></span>
+        <span>AIS Lab</span>
+      </a>
+      <button class="menu-button" aria-label="Open navigation">Menu</button>
+      <div class="nav-links">
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#people">People</a>
+        <a href="#news">News</a>
+        <a href="#join">Join Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="home">
+    <header class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> College of Engineering Research Laboratory</div>
+          <h1>Advanced Intelligent Systems Lab</h1>
+          <p class="lead">We build reliable intelligent systems at the intersection of robotics, machine learning, embedded computing, and human-centered engineering.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#research">Explore Research</a>
+            <a class="button secondary" href="#join">Open Positions</a>
+          </div>
+        </div>
+        <div class="hero-card reveal">
+          <div class="visual" role="img" aria-label="Abstract engineering research visualization">
+            <div class="network"></div>
+            <div class="floating-panel">
+              <strong>Research focus</strong>
+              <p style="margin: 8px 0 0; color: rgba(255,255,255,.76);">Autonomous systems, learning algorithms, and engineering platforms for real-world deployment.</p>
+              <div class="metrics">
+                <div class="metric"><strong>25+</strong><span>Publications</span></div>
+                <div class="metric"><strong>8</strong><span>Members</span></div>
+                <div class="metric"><strong>4</strong><span>Projects</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="research">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Research</div>
+            <h2>Engineering intelligence for complex systems.</h2>
+          </div>
+          <p>Replace these cards with your lab's actual research themes. Keep each description short and outcome-oriented.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="card-icon">01</div>
+            <h3>Robot Learning</h3>
+            <p>Learning-based control, perception, and decision-making for robots operating in uncertain physical environments.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">02</div>
+            <h3>Embedded AI Systems</h3>
+            <p>Efficient algorithms and hardware-aware software stacks for deploying intelligence on edge devices.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">03</div>
+            <h3>Human-Centered Engineering</h3>
+            <p>Interactive systems that improve safety, usability, and trust in real-world engineering applications.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Publications</div>
+            <h2>Selected recent work.</h2>
+          </div>
+          <p>Show only representative publications on the homepage. Put the full list on a separate page later.</p>
+        </div>
+        <div class="publication-list">
+          <article class="publication reveal">
+            <div class="pub-year">2026</div>
+            <div>
+              <h3>Robust Multimodal Planning for Autonomous Engineering Systems</h3>
+              <p>J. Kim, S. Lee, K. Kang · International Conference on Robotics and Automation</p>
+            </div>
+            <span class="tag">Conference</span>
+          </article>
+          <article class="publication reveal">
+            <div class="pub-year">2025</div>
+            <div>
+              <h3>Hardware-Aware Neural Control for Edge Robotics</h3>
+              <p>M. Park, H. Choi, K. Kang · IEEE Transactions on Industrial Electronics</p>
+            </div>
+            <span class="tag">Journal</span>
+          </article>
+          <article class="publication reveal">
+            <div class="pub-year">2025</div>
+            <div>
+              <h3>Safety-Constrained Learning in Human-Robot Collaborative Environments</h3>
+              <p>A. Jung, Y. Han, K. Kang · ACM/IEEE International Conference on HRI</p>
+            </div>
+            <span class="tag">Best Paper</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="people">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">People</div>
+            <h2>Researchers and students.</h2>
+          </div>
+          <p>Use consistent portraits. Good member photos make the entire website look more credible.</p>
+        </div>
+        <div class="people-grid">
+          <article class="card person reveal">
+            <div class="avatar"></div>
+            <div class="person-body"><h3>Prof. Name</h3><p>Principal Investigator</p></div>
+          </article>
+          <article class="card person reveal">
+            <div class="avatar"></div>
+            <div class="person-body"><h3>Student Name</h3><p>Ph.D. Student · Robotics</p></div>
+          </article>
+          <article class="card person reveal">
+            <div class="avatar"></div>
+            <div class="person-body"><h3>Student Name</h3><p>M.S. Student · Embedded AI</p></div>
+          </article>
+          <article class="card person reveal">
+            <div class="avatar"></div>
+            <div class="person-body"><h3>Student Name</h3><p>Undergraduate Intern</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">News</div>
+            <h2>Recent updates.</h2>
+          </div>
+          <p>News makes the lab feel active. Update this section with accepted papers, awards, talks, and openings.</p>
+        </div>
+        <div class="news-list">
+          <article class="news-item reveal">
+            <div class="date">May 2026</div>
+            <div><h3>One paper accepted to a leading robotics conference.</h3><p>Congratulations to the student authors and collaborators.</p></div>
+          </article>
+          <article class="news-item reveal">
+            <div class="date">Mar 2026</div>
+            <div><h3>New industry-sponsored research project launched.</h3><p>The project focuses on dependable AI systems for real-world engineering applications.</p></div>
+          </article>
+          <article class="news-item reveal">
+            <div class="date">Jan 2026</div>
+            <div><h3>Graduate student positions are open.</h3><p>We are looking for motivated students interested in robotics, AI systems, and embedded intelligence.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="container">
+        <div class="join reveal">
+          <div>
+            <h2>Join our lab.</h2>
+            <p>We welcome motivated graduate students and interns with interests in intelligent systems, robotics, embedded computing, and applied machine learning.</p>
+          </div>
+          <a class="button secondary" href="mailto:professor@example.edu">Contact PI</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-inner">
+      <div>
+        <strong style="color: var(--primary);">Advanced Intelligent Systems Lab</strong><br />
+        College of Engineering, Your University
+      </div>
+      <div>
+        professor@example.edu · Engineering Building 000
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuButton.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
