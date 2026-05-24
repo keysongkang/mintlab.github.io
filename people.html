@@ -35,17 +35,18 @@
     .nav {
       position: sticky;
       top: 0;
-      background: rgba(246,251,247,.88);
+      z-index: 40;
+      border-bottom: 1px solid rgba(216, 234, 223, .82);
+      background: rgba(246, 251, 247, .82);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
-      z-index: 10;
     }
 
     .nav-inner {
       height: 74px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 22px;
     }
 
     .brand {
@@ -56,17 +57,28 @@
       letter-spacing: -.04em;
     }
 
-    .brand img {
-      width: 40px;
-      height: 40px;
+    .brand-logo {
+      width: 42px;
+      height: 42px;
       object-fit: contain;
     }
 
+    .brand-text strong { display: block; line-height: 1; font-size: 1.05rem; }
+    .brand-text span { display: block; color: var(--muted); font-size: .74rem; letter-spacing: .01em; margin-top: 3px; }
+
     .nav-links {
       display: flex;
-      gap: 22px;
+      gap: 24px;
+      align-items: center;
       color: var(--muted);
+      font-size: .94rem;
       font-weight: 700;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
     }
 
     .nav-links a:hover { color: var(--green); }
@@ -215,12 +227,19 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
-        <img src="Logo.png" alt="MINT Lab logo" />
-        <span>MINT Lab</span>
+        <img class="brand-logo" src="Logo.png" alt="MINT Lab logo" />
+        <span class="brand-text">
+          <strong>MINT Lab</strong>
+          <span>Materials Informatics & Theory Laboratory</span>
+        </span>
       </a>
       <div class="nav-links">
         <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
         <a href="publications.html">Publications</a>
+        <a class="active" href="people.html">People</a>
+        <a href="news.html">News</a>
+        <a href="index.html#join">Join Us</a>
       </div>
     </div>
   </nav>

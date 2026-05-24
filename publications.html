@@ -32,17 +32,18 @@
     .nav {
       position: sticky;
       top: 0;
-      background: rgba(246,251,247,.88);
+      z-index: 40;
+      border-bottom: 1px solid rgba(216, 234, 223, .82);
+      background: rgba(246, 251, 247, .82);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
-      z-index: 10;
     }
 
     .nav-inner {
       height: 74px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 22px;
     }
 
     .brand {
@@ -53,17 +54,28 @@
       letter-spacing: -.04em;
     }
 
-    .brand img {
-      width: 40px;
-      height: 40px;
+    .brand-logo {
+      width: 42px;
+      height: 42px;
       object-fit: contain;
     }
 
+    .brand-text strong { display: block; line-height: 1; font-size: 1.05rem; }
+    .brand-text span { display: block; color: var(--muted); font-size: .74rem; letter-spacing: .01em; margin-top: 3px; }
+
     .nav-links {
       display: flex;
-      gap: 22px;
+      gap: 24px;
+      align-items: center;
       color: var(--muted);
+      font-size: .94rem;
       font-weight: 700;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
     }
 
     .nav-links a:hover { color: var(--green); }
@@ -84,13 +96,21 @@
       margin: 14px 0 18px;
       font-size: clamp(3rem, 6vw, 5.5rem);
       line-height: .92;
-      letter-spacing: -.08em;
+      letter-spacing: -.00em;
     }
 
     .lead {
       max-width: 760px;
       color: var(--muted);
       font-size: 1.08rem;
+    }
+
+    .highlight-line {
+      margin: 0 0 18px;
+      color: var(--green);
+      font-size: clamp(1.5rem, 3vw, 2.3rem);
+      font-weight: 900;
+      line-height: 1.2;
     }
 
     .year-block {
@@ -105,12 +125,34 @@
     }
 
     .paper {
+      position: relative;
+      min-height: 236px;
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 24px;
+      padding-right: calc(min(320px, 30%) + 24px);
       margin-bottom: 14px;
       box-shadow: 0 10px 32px rgba(0,0,0,.04);
+      overflow: hidden;
+    }
+
+    .paper > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .paper::after {
+      content: "";
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      height: 188px;
+      width: min(320px, 30%);
+      border-radius: 18px;
+      background: url("Picture2.svg") center/contain no-repeat;
+      background-color: transparent;
+      z-index: 0;
     }
 
     .paper h3 {
@@ -119,9 +161,23 @@
       letter-spacing: -.03em;
     }
 
+    .paper h3 a:hover { color: var(--green); }
+
     .authors {
       color: var(--muted);
       margin-bottom: 8px;
+    }
+
+    .author-note {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 10px;
+    }
+
+    .author-highlight {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
     }
 
     .venue {
@@ -149,6 +205,23 @@
       font-size: .9rem;
     }
 
+    @media (max-width: 840px) {
+      .paper {
+        min-height: 420px;
+        padding-right: 24px;
+      }
+
+      .paper::after {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        height: 220px;
+        margin-top: 18px;
+      }
+    }
+
     footer {
       border-top: 1px solid var(--line);
       margin-top: 80px;
@@ -161,21 +234,30 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
-        <img src="Logo.png" alt="MINT Lab logo" />
-        <span>MINT Lab</span>
+        <img class="brand-logo" src="Logo.png" alt="MINT Lab logo" />
+        <span class="brand-text">
+          <strong>MINT Lab</strong>
+          <span>Materials Informatics & Theory Laboratory</span>
+        </span>
       </a>
       <div class="nav-links">
         <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a class="active" href="publications.html">Publications</a>
         <a href="people.html">People</a>
+        <a href="news.html">News</a>
+        <a href="index.html#join">Join Us</a>
       </div>
     </div>
   </nav>
 
   <header>
     <div class="container">
-      <div class="kicker">Publications</div>
-      <h1>Research publications.</h1>
-      <p class="lead">Representative publications from MINT Lab in materials informatics, atomistic machine learning, and computational materials science.</p>
+      <!-- <div class="kicker">Publications</div> -->
+      <h1>Research Publications</h1>
+      <div class="highlight-line">재료정보이론연구실 출판 논문</div>
+      <p class="lead">Representative publications from MINT Lab in Computational Materials Science and AI-Materials. </br> 전산재료 및 소재인공지능을 활용한 재료정보이론연구실의 연구 결과를 소개합니다.</p>
+      <div class="author-note">† Equal contribution, * Corresponding author</div>
     </div>
   </header>
 
@@ -184,23 +266,22 @@
       <h2 class="year-title">2026</h2>
 
       <article class="paper">
-        <h3>Graph Learning Frameworks for Functional Materials Discovery</h3>
-        <div class="authors">Author A, Author B, K. Kang</div>
-        <div class="venue">Nature Computational Science</div>
+        <h3><a href="https://doi.org/10.1103/gpk7-gr7q">Temperature-dependent optical and magneto-optical spectra of ferromagnetic bcc Fe</a></h3>
+        <div class="authors"><span class="author-highlight">K Kang</span>, DG Cahill, A Schleife</div>
+        <div class="venue">Physical Review B 113 (18), 184408</div>
         <div class="links">
-          <a class="button" href="#">Paper</a>
-          <a class="button" href="#">Code</a>
-          <a class="button" href="#">arXiv</a>
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:2osOgNQ5qMEC">Scholar</a>
         </div>
       </article>
 
       <article class="paper">
-        <h3>Autonomous Screening Pipelines for Sustainable Materials</h3>
-        <div class="authors">Author A, Author B, K. Kang</div>
-        <div class="venue">NeurIPS AI for Science Workshop</div>
+        <h3><a href="https://doi.org/10.1002/advs.202514939">Atomistic Insights into the Electrochemical Oxygen Evolution Activity of Hollandite IrO<sub>2</sub> Surfaces</a></h3>
+        <div class="authors">S Lee, <span class="author-highlight">K Kang</span>, T Lee, A Soon</div>
+        <div class="venue">Advanced Science 13 (6), e14939</div>
         <div class="links">
-          <a class="button" href="#">Paper</a>
-          <a class="button" href="#">Dataset</a>
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:TQgYirikUcIC">Scholar</a>
         </div>
       </article>
     </section>
@@ -209,22 +290,282 @@
       <h2 class="year-title">2025</h2>
 
       <article class="paper">
-        <h3>Interpretable Materials Informatics from Atomistic Descriptors</h3>
-        <div class="authors">Author A, Author B, K. Kang</div>
-        <div class="venue">Advanced Materials</div>
+        <h3><a href="https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.9.063801">Accelerating the training and improving the reliability of machine-learned interatomic potentials for strongly anharmonic materials through active learning</a></h3>
+        <div class="authors"><span class="author-highlight">K Kang</span>, TAR Purcell, C Carbogno, M Scheffler</div>
+        <div class="venue">Physical Review Materials 9 (6), 063801</div>
         <div class="links">
-          <a class="button" href="#">Paper</a>
-          <a class="button" href="#">Supplementary</a>
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:ufrVoPGSRksC">Scholar</a>
         </div>
       </article>
 
       <article class="paper">
-        <h3>Machine Learning Potentials for Complex Crystal Systems</h3>
-        <div class="authors">Author A, Author B, K. Kang</div>
-        <div class="venue">Physical Review Materials</div>
+        <h3><a href="https://doi.org/10.1002/adom.202402159">Birefringent Color Filter by Layered Metal‐Organic Chalcogenides: In‐Plane Anisotropy and Odd/Even Effect</a></h3>
+        <div class="authors">Z Ye, J Zhao, <span class="author-highlight">K Kang</span>, SJ McCormack, YT Shao, MY Efremov, A Schleife, ...</div>
+        <div class="venue">Advanced Optical Materials 13 (9), 2570073</div>
         <div class="links">
-          <a class="button" href="#">Paper</a>
-          <a class="button" href="#">GitHub</a>
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:4TOpqqG69KYC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1016/j.nanoen.2025.111491">Ultra-low thermal conductivity and high zT in multi-doped AgInSe<sub>2</sub>: A high-entropy approach to n-type thermoelectric materials</a></h3>
+        <div class="authors">S Acharya†, S Park†, <span class="author-highlight">K Kang</span>†, W Jang, Y Shasho, J Lee, Y Choi, J Hwang, ...</div>
+        <div class="venue">Nano Energy 146, 111491</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:mB3voiENLucC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1002/adfm.202507738">Emergence of Local Magnetic Moment in Ternary TaWSe<sub>2</sub> Single Crystal via Atomic Clustering</a></h3>
+        <div class="authors">NH Lam†, MN Huda†, <span class="author-highlight">K Kang</span>†, JH Ko, Z Gai, YG Khim, YJ Chang, Y Choi, ...</div>
+        <div class="venue">Advanced Functional Materials 35 (48), 2507738</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:ZeXyd9-uunAC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1021/jacs.5c09452">Superlattice of Self-Assembled Silver-Thiolates: The Formation of Unique Sublayers Induced by Mixed N-Alkyl Chains</a></h3>
+        <div class="authors">J Zhao, Z Ye, Z Ji, A Sutrisno, <span class="author-highlight">K Kang</span>, MY Efremov, JM Zuo, A Schleife, ...</div>
+        <div class="venue">Journal of the American Chemical Society 147 (42), 38043</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:IWHjjKOFINEC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.20517/jmi.2025.65">Exploring materials data through collaboration: 2024 KRICT ChemDX Hackathon</a></h3>
+        <div class="authors">SH Yoo, AKY Low, J Recatala-Gomez, H Sahu, ..., <span class="author-highlight">K Kang</span>, ...</div>
+        <div class="venue">Journal of Materials Informatics 5 (4), 54</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:HDshCWvjkbEC">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2024</h2>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.8.084413">Magnetic anisotropy in single-crystalline antiferromagnetic</a></h3>
+        <div class="authors">MS Gebre, RK Banner, <span class="author-highlight">K Kang</span>, K Qu, H Cao, A Schleife, DP Shoemaker</div>
+        <div class="venue">Physical Review Materials 8 (8), 084413</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:KlAtU1dfN6UC">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2023</h2>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.107.064412">Phonon, electron, and magnon excitations in antiferromagnetic L1<sub>0</sub>-type MnPt</a></h3>
+        <div class="authors"><span class="author-highlight">K Kang</span>, DG Cahill, A Schleife</div>
+        <div class="venue">Physical Review B 107 (6), 064412</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:ULOm3_A8WrAC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1016/j.ultramic.2023.113696">Angstrom-scale imaging of magnetization in antiferromagnetic Fe<sub>2</sub>As via 4D-STEM</a></h3>
+        <div class="authors">KX Nguyen, J Huang, MH Karigerasi, <span class="author-highlight">K Kang</span>, DG Cahill, JM Zuo, ...</div>
+        <div class="venue">Ultramicroscopy 247, 113696</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:M3ejUd6NZC8C">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2022</h2>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.105.184404">Polar magneto-optical Kerr effect in antiferromagnetic under an external magnetic field</a></h3>
+        <div class="authors"><span class="author-highlight">K Kang</span>, K Yang, K Puthalath, DG Cahill, A Schleife</div>
+        <div class="venue">Physical Review B 105 (18), 184404</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:0EnyYjriUFMC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.6.094405">High-resolution diffraction reveals magnetoelastic coupling and coherent phase separation in tetragonal CuMnAs</a></h3>
+        <div class="authors">MH Karigerasi, <span class="author-highlight">K Kang</span>, J Huang, VK Peterson, KC Rule, AJ Studer, ...</div>
+        <div class="venue">Physical Review Materials 6 (9), 094405</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:_FxGoFyzp5QC">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2021</h2>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.5.084411">In-plane magnetic structure and exchange interactions in the high-temperature antiferromagnet</a></h3>
+        <div class="authors">C Zhao, <span class="author-highlight">K Kang</span>, JC Neuefeind, A Schleife, DP Shoemaker</div>
+        <div class="venue">Physical Review Materials 5 (8), 084411</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:Zph67rFs4hoC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.18260/1-2--37323">Incorporating the use of a materials database into a Materials Science and Engineering freshman course</a></h3>
+        <div class="authors"><span class="author-highlight">K Kang</span>, MD Goodman, JA Krogstad, C Leal, PY Huang, A Schleife</div>
+        <div class="venue">2021 ASEE Annual Conference &amp; Exposition</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:5nxA0vEk-isC">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2020</h2>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1063/5.0009445">Metallic antiferromagnets</a></h3>
+        <div class="authors">SA Siddiqui, J Sklenar, <span class="author-highlight">K Kang</span>, MJ Gilbert, A Schleife, N Mason, ...</div>
+        <div class="venue">Journal of Applied Physics 128 (4), 040904</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:LkGwnXOMwfcC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.102.064415">Magnetocrystalline anisotropy of the easy-plane metallic antiferromagnet</a></h3>
+        <div class="authors">K Yang, <span class="author-highlight">K Kang</span>, Z Diao, MH Karigerasi, DP Shoemaker, A Schleife, ...</div>
+        <div class="venue">Physical Review B 102 (6), 064415</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:3fE2CSJIrl8C">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.4.114416">Strongly two-dimensional exchange interactions in the in-plane metallic antiferromagnet probed by inelastic neutron scattering</a></h3>
+        <div class="authors">MH Karigerasi, <span class="author-highlight">K Kang</span>, GE Granroth, A Banerjee, A Schleife, ...</div>
+        <div class="venue">Physical Review Materials 4 (11), 114416</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:YOwf2qJgpHMC">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2019</h2>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1016/j.commatsci.2019.01.004">Pushing the frontiers of modeling excited electronic states and dynamics to accelerate materials engineering and design</a></h3>
+        <div class="authors"><span class="author-highlight">K Kang</span>, A Kononov, CW Lee, JA Leveillee, EP Shapera, X Zhang, ...</div>
+        <div class="venue">Computational Materials Science 160, 207</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:Se3iqnhoufwC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.3.124408">Magneto-optic response of the metallic antiferromagnet Fe<sub>2</sub>As to ultrafast temperature excursions</a></h3>
+        <div class="authors">K Yang, <span class="author-highlight">K Kang</span>, Z Diao, A Ramanathan, MH Karigerasi, DP Shoemaker, ...</div>
+        <div class="venue">Physical Review Materials 3 (12), 124408</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:L8Ckcad2t8MC">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.3.111402">In-plane hexagonal antiferromagnet in the Cu-Mn-As system</a></h3>
+        <div class="authors">MH Karigerasi, <span class="author-highlight">K Kang</span>, A Ramanathan, DL Gray, MD Frontzek, H Cao, ...</div>
+        <div class="venue">Physical Review Materials 3 (11), 111402</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:7PzlFSSx8tAC">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2018</h2>
+
+      <article class="paper">
+        <h3><a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.97.134415">Voltage-induced switching of an antiferromagnetically ordered topological Dirac semimetal</a></h3>
+        <div class="authors">Y Kim, <span class="author-highlight">K Kang</span>, A Schleife, MJ Gilbert</div>
+        <div class="venue">Physical Review B 97, 134415 (2018)</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:qxL8FJ1GzNcC">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2017</h2>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1039/C7NR03377J">Assembling phosphorene flexagons for 2D electron-density-guided nanopatterning and nanofabrication</a></h3>
+        <div class="authors"><span class="author-highlight">K Kang</span>†, W Jang†, A Soon</div>
+        <div class="venue">Nanoscale 9 (29), 10465</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:UeHWp8X0CEIC">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2016</h2>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1039/C6NR04354B">Acute mechano-electronic responses in twisted phosphorene nanoribbons</a></h3>
+        <div class="authors">W Jang, <span class="author-highlight">K Kang</span>, A Soon</div>
+        <div class="venue">Nanoscale 8 (31), 14778</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:IjCSPb-OGe4C">Scholar</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1039/C5CP07932B">In search of non-conventional surface oxidic motifs of Cu on Au (111)</a></h3>
+        <div class="authors">T Lee, Y Lee, <span class="author-highlight">K Kang</span>, A Soon</div>
+        <div class="venue">Physical Chemistry Chemical Physics 18 (10), 7349</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:u-x6o8ySG0sC">Scholar</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="year-block">
+      <h2 class="year-title">2015</h2>
+
+      <article class="paper">
+        <h3><a href="https://doi.org/10.1039/C5NR05605E">Remarkably low-energy one-dimensional fault line defects in single-layered phosphorene</a></h3>
+        <div class="authors">W Jang, <span class="author-highlight">K Kang</span>, A Soon</div>
+        <div class="venue">Nanoscale 7 (45), 19073</div>
+        <div class="links">
+          <a class="button" href="#">PDF</a>
+          <a class="button" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=qfndFhkAAAAJ&citation_for_view=qfndFhkAAAAJ:eQOLeE2rZwMC">Scholar</a>
         </div>
       </article>
     </section>

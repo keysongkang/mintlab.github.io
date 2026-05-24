@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research | MINT Lab</title>
+  <meta name="description" content="MINT Lab research — microscopic materials physics, AI-driven discovery, magnetic memory, thermoelectrics, and computational workflows." />
+  <style>
+    :root {
+      --bg: #f6fbf7;
+      --surface: #ffffff;
+      --ink: #10201a;
+      --muted: #5f7168;
+      --line: #d8eadf;
+      --green: #008c3a;
+      --green-2: #00a64a;
+      --green-3: #dff5e7;
+      --dark: #07130e;
+      --shadow: 0 28px 80px rgba(0, 70, 32, 0.12);
+      --radius-xl: 34px;
+      --radius-lg: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(0, 166, 74, .12), transparent 34rem),
+        linear-gradient(180deg, #fbfffc 0%, var(--bg) 48%, #ffffff 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid rgba(216, 234, 223, .82);
+      background: rgba(246, 251, 247, .82);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand-text strong { display: block; line-height: 1; font-size: 1.05rem; }
+    .brand-text span { display: block; color: var(--muted); font-size: .74rem; letter-spacing: .01em; margin-top: 3px; }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      color: var(--muted);
+      font-size: .94rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--green); }
+
+    .page-hero {
+      padding: 94px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: "";
+      position: absolute;
+      right: -14rem;
+      top: -18rem;
+      width: 42rem;
+      height: 42rem;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0, 166, 74, .16), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      color: var(--green);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-weight: 900;
+      font-size: .84rem;
+      letter-spacing: .03em;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green-2);
+      box-shadow: 0 0 0 6px rgba(0,166,74,.12);
+    }
+
+    h1 {
+      max-width: 920px;
+      margin: 22px 0 20px;
+      font-size: clamp(3rem, 6.5vw, 6.6rem);
+      line-height: .92;
+      letter-spacing: -.045em;
+      color: var(--dark);
+    }
+
+    .highlight { color: var(--green); }
+    .lead {
+      max-width: 780px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.55vw, 1.25rem);
+    }
+
+    section { padding: 72px 0; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 26px;
+      margin-bottom: 30px;
+    }
+
+    .kicker {
+      color: var(--green);
+      font-size: .76rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    h2 {
+      margin: 8px 0 0;
+      color: var(--dark);
+      font-size: clamp(2rem, 3.2vw, 3.45rem);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    .section-head p { max-width: 540px; margin: 0; color: var(--muted); }
+
+    .concept {
+      background: var(--dark);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: 44px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 34px;
+      align-items: center;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .concept::after {
+      content: "";
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      right: -180px;
+      top: -180px;
+      border-radius: 999px;
+      background: rgba(0,166,74,.24);
+    }
+
+    .concept > * { position: relative; z-index: 1; }
+    .concept h2 { color: white; margin: 0 0 14px; }
+    .concept p { margin: 0; color: rgba(255,255,255,.74); }
+
+    .interaction-map {
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .node {
+      width: 126px;
+      height: 126px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,.28);
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 24px 60px rgba(0,0,0,.18);
+    }
+
+    .node.center {
+      width: 150px;
+      height: 150px;
+      background: rgba(0,166,74,.46);
+      color: white;
+    }
+
+    .node.electron { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); }
+    .node.lattice { position: absolute; bottom: 0; left: 8%; }
+    .node.spin { position: absolute; bottom: 0; right: 8%; }
+
+    .line {
+      position: absolute;
+      height: 2px;
+      width: 210px;
+      background: rgba(255,255,255,.28);
+      transform-origin: center;
+    }
+    .line.a { transform: rotate(90deg); }
+    .line.b { transform: rotate(32deg); bottom: 88px; left: 34%; }
+    .line.c { transform: rotate(-32deg); bottom: 88px; right: 34%; }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: 0 14px 42px rgba(16,32,26,.05);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--green-3);
+      color: var(--green);
+      font-weight: 950;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--dark);
+      font-size: 1.2rem;
+      letter-spacing: -.03em;
+    }
+
+    .card p { margin: 0; color: var(--muted); }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .step {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      min-height: 190px;
+    }
+
+    .step span {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--green);
+      color: white;
+      font-weight: 950;
+      margin-bottom: 18px;
+    }
+
+    .step h3 { margin: 0 0 8px; color: var(--dark); }
+    .step p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+    .focus-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .focus-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 22px;
+      align-items: start;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .focus-item strong {
+      color: var(--green);
+      font-size: 1.05rem;
+    }
+
+    .focus-item h3 {
+      margin: 0 0 8px;
+      color: var(--dark);
+      letter-spacing: -.03em;
+    }
+
+    .focus-item p { margin: 0; color: var(--muted); }
+
+    .join {
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(0,140,58,.95), rgba(0,92,41,.96)),
+        var(--green);
+      color: white;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .join h2 { color: white; margin: 0 0 12px; }
+    .join p { max-width: 700px; margin: 0; color: rgba(255,255,255,.78); }
+
+    .button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0 19px;
+      font-weight: 900;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--dark);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 42px 0;
+      color: var(--muted);
+    }
+    .footer-inner { display: flex; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
+
+    @media (max-width: 920px) {
+      .concept, .join { grid-template-columns: 1fr; }
+      .research-grid, .workflow { grid-template-columns: repeat(2, 1fr); }
+      .focus-item { grid-template-columns: 1fr; }
+      .nav-links { gap: 14px; font-size: .92rem; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .page-hero { padding: 58px 0 42px; }
+      .section-head { flex-direction: column; align-items: start; }
+      .research-grid, .workflow { grid-template-columns: 1fr; }
+      .concept, .join { padding: 30px; }
+      .brand-text span { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="MINT Lab home">
+        <img class="brand-logo" src="Logo.png" alt="MINT Lab leaf logo" />
+        <span class="brand-text">
+          <strong>MINT Lab</strong>
+          <span>Materials Informatics & Theory Laboratory</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a class="active" href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="people.html">People</a>
+        <a href="news.html">News</a>
+        <a href="index.html#join">Join Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-hero">
+      <div class="container">
+        <div class="eyebrow"><span class="dot"></span> Research at MINT Lab</div>
+        <h1>From microscopic interactions to <span class="highlight">AI-driven materials discovery</span>.</h1>
+        <p class="lead">We combine first-principles theory, atomistic simulation, transport modeling, and materials AI to understand emergent properties and discover next-generation functional materials.</p>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+        <div class="concept">
+          <div>
+            <div class="kicker" style="color:#7ef0a9;">Core Concept</div>
+            <h2>Electron · Lattice · Spin · Ion</h2>
+            <p>Many advanced materials are governed by coupled microscopic degrees of freedom. MINT Lab investigates how these interactions create macroscopic functionality such as memory, energy conversion, transport, and switching.</p>
+          </div>
+          <div class="interaction-map" aria-label="electron lattice spin interaction map">
+            <div class="line a"></div>
+            <div class="line b"></div>
+            <div class="line c"></div>
+            <div class="node electron">Electron</div>
+            <div class="node lattice">Lattice</div>
+            <div class="node spin">Spin</div>
+            <div class="node center">Emergent<br />Properties</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="areas">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Research Areas</div>
+            <h2>Three connected research directions.</h2>
+          </div>
+          <p>Our projects connect fundamental materials physics with computational design and AI-accelerated workflows.</p>
+        </div>
+
+        <div class="research-grid">
+          <article class="card">
+            <div class="card-icon">01</div>
+            <h3>Magnetic Memory & Spintronics</h3>
+            <p>We study metallic antiferromagnets, spin-related transport, and microscopic mechanisms for next-generation magnetic memory and low-power devices.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">02</div>
+            <h3>Thermoelectric Materials</h3>
+            <p>We predict thermal and electronic transport properties to identify high-performance thermoelectric and doped semiconductor materials.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">03</div>
+            <h3>AI-Accelerated Simulation</h3>
+            <p>We develop machine-learning potentials, deep Hamiltonian models, and active-learning workflows to accelerate expensive materials simulations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Workflow</div>
+            <h2>Discovery loop.</h2>
+          </div>
+          <p>We use simulation and AI not as separate tools, but as a closed-loop framework for generating, testing, and refining materials hypotheses.</p>
+        </div>
+
+        <div class="workflow">
+          <div class="step">
+            <span>1</span>
+            <h3>Theory</h3>
+            <p>Identify mechanisms, descriptors, and design principles from microscopic physics.</p>
+          </div>
+          <div class="step">
+            <span>2</span>
+            <h3>Simulation</h3>
+            <p>Predict structure, stability, transport, phonon, magnon, and electronic properties.</p>
+          </div>
+          <div class="step">
+            <span>3</span>
+            <h3>AI Models</h3>
+            <p>Train machine-learning models to accelerate costly calculations and explore larger materials spaces.</p>
+          </div>
+          <div class="step">
+            <span>4</span>
+            <h3>Collaboration</h3>
+            <p>Work closely with experimental groups to validate predictions and refine design strategies.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="focus">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Current Focus</div>
+            <h2>Materials problems we care about.</h2>
+          </div>
+        </div>
+
+        <div class="focus-list">
+          <article class="focus-item">
+            <strong>Magnetic materials</strong>
+            <div>
+              <h3>Metallic antiferromagnets for next-generation memory</h3>
+              <p>We investigate fundamental magnetic, thermal, and electronic properties of metallic antiferromagnets and related spintronic materials.</p>
+            </div>
+          </article>
+          <article class="focus-item">
+            <strong>Energy materials</strong>
+            <div>
+              <h3>High-performance thermoelectric materials</h3>
+              <p>We model electronic and phonon transport to discover materials for waste-heat recovery and energy-efficient technologies.</p>
+            </div>
+          </article>
+          <article class="focus-item">
+            <strong>Methods</strong>
+            <div>
+              <h3>Reliable AI workflows for materials simulation</h3>
+              <p>We build data-efficient, physically grounded AI workflows that speed up molecular dynamics, transport calculations, and materials screening.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="join">
+          <div>
+            <h2>Interested in our research?</h2>
+            <p>We welcome students and collaborators working at the intersection of materials physics, computation, AI, and experiment.</p>
+          </div>
+          <a class="button" href="mailto:professor@example.edu">Contact PI</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong style="color: var(--dark);">MINT Lab</strong><br />Materials Informatics & Theory Laboratory</div>
+      <div>School of Materials Science and Engineering · Chonnam National University</div>
+    </div>
+  </footer>
+</body>
+</html>
