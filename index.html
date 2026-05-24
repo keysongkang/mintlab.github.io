@@ -205,15 +205,45 @@
     .molecule {
       position: absolute;
       inset: 0;
-      opacity: .45;
-      background-image:
-        linear-gradient(32deg, transparent 47%, rgba(255,255,255,.28) 48%, rgba(255,255,255,.28) 52%, transparent 53%),
-        linear-gradient(145deg, transparent 47%, rgba(255,255,255,.20) 48%, rgba(255,255,255,.20) 52%, transparent 53%);
-      background-size: 170px 170px;
-      animation: drift 18s linear infinite;
+      overflow: hidden;
+      opacity: .42;
     }
 
-    @keyframes drift { to { transform: translate3d(70px, 70px, 0); } }
+    .molecule::before,
+    .molecule::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    .molecule::before {
+      background:
+        radial-gradient(circle at 12% 22%, rgba(255,255,255,.28) 0 7px, transparent 8px),
+        radial-gradient(circle at 32% 48%, rgba(255,255,255,.22) 0 8px, transparent 9px),
+        radial-gradient(circle at 58% 24%, rgba(255,255,255,.26) 0 7px, transparent 8px),
+        radial-gradient(circle at 74% 52%, rgba(255,255,255,.20) 0 8px, transparent 9px),
+        radial-gradient(circle at 88% 30%, rgba(255,255,255,.24) 0 7px, transparent 8px),
+        radial-gradient(circle at 22% 78%, rgba(255,255,255,.20) 0 8px, transparent 9px),
+        radial-gradient(circle at 52% 74%, rgba(255,255,255,.24) 0 7px, transparent 8px),
+        radial-gradient(circle at 82% 82%, rgba(255,255,255,.18) 0 8px, transparent 9px);
+      filter: blur(.2px);
+    }
+
+    .molecule::after {
+      background:
+        linear-gradient(32deg, transparent 49%, rgba(255,255,255,.12) 50%, transparent 51%),
+        linear-gradient(148deg, transparent 49%, rgba(255,255,255,.10) 50%, transparent 51%),
+        linear-gradient(88deg, transparent 49%, rgba(255,255,255,.08) 50%, transparent 51%);
+      background-size: 220px 220px;
+      mix-blend-mode: screen;
+      animation: drift 24s linear infinite;
+    }
+
+    @keyframes drift {
+      to {
+        transform: translate3d(40px, 40px, 0);
+      }
+    }
 
     .hero-logo {
       position: absolute;
