@@ -3,65 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Intelligent Systems Lab</title>
-  <meta name="description" content="A modern engineering research laboratory website for research, publications, people, and recruitment." />
+  <title>MINT Lab | Materials Informatics & Theory Laboratory</title>
+  <meta name="description" content="MINT Lab — Materials Informatics & Theory Laboratory. AI, theory, and computation for materials discovery." />
   <style>
     :root {
-      --bg: #f7f9fc;
+      --bg: #f6fbf7;
       --surface: #ffffff;
-      --surface-soft: #eef3f8;
-      --text: #111827;
-      --muted: #5f6b7a;
-      --line: #dbe3ee;
-      --primary: #0b1f3a;
-      --primary-soft: #12345f;
-      --accent: #2f80ed;
-      --accent-soft: #d8e9ff;
-      --shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
+      --surface-2: #eef8f1;
+      --ink: #10201a;
+      --muted: #5f7168;
+      --line: #d8eadf;
+      --green: #008c3a;
+      --green-2: #00a64a;
+      --green-3: #dff5e7;
+      --dark: #07130e;
+      --shadow: 0 28px 80px rgba(0, 70, 32, 0.12);
+      --radius-xl: 34px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
       --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background: var(--bg);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(0, 166, 74, .12), transparent 34rem),
+        linear-gradient(180deg, #fbfffc 0%, var(--bg) 48%, #ffffff 100%);
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
 
     .nav {
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: rgba(247, 249, 252, 0.82);
+      z-index: 40;
+      border-bottom: 1px solid rgba(216, 234, 223, .82);
+      background: rgba(246, 251, 247, .82);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(219, 227, 238, 0.8);
     }
 
     .nav-inner {
@@ -69,470 +55,359 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 22px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      font-weight: 900;
+      letter-spacing: -0.04em;
     }
 
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      box-shadow: 0 12px 28px rgba(47, 128, 237, 0.25);
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
     }
 
-    .brand span:last-child {
-      font-size: 1.02rem;
-    }
+    .brand-text strong { display: block; line-height: 1; font-size: 1.05rem; }
+    .brand-text span { display: block; color: var(--muted); font-size: .74rem; letter-spacing: .01em; margin-top: 3px; }
 
     .nav-links {
       display: flex;
-      align-items: center;
       gap: 24px;
+      align-items: center;
       color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-size: .94rem;
+      font-weight: 700;
     }
 
-    .nav-links a:hover {
-      color: var(--primary);
-    }
+    .nav-links a:hover { color: var(--green); }
 
     .menu-button {
       display: none;
       border: 1px solid var(--line);
       background: var(--surface);
-      border-radius: 12px;
-      padding: 9px 12px;
-      font-weight: 700;
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-weight: 800;
+      color: var(--ink);
       cursor: pointer;
     }
 
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 92px 0 64px;
+      padding: 92px 0 78px;
     }
 
-    .hero::before {
+    .hero::after {
       content: "";
       position: absolute;
-      inset: -160px -160px auto auto;
-      width: 520px;
-      height: 520px;
+      right: -13rem;
+      top: -16rem;
+      width: 42rem;
+      height: 42rem;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(47,128,237,.22), rgba(47,128,237,0) 62%);
+      background: radial-gradient(circle, rgba(0, 166, 74, .16), transparent 68%);
       pointer-events: none;
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 56px;
       align-items: center;
-      gap: 54px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
+      gap: 9px;
       border: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      color: var(--green);
       border-radius: 999px;
-      color: var(--primary-soft);
-      background: rgba(255,255,255,0.74);
-      font-size: 0.86rem;
-      font-weight: 700;
+      padding: 8px 13px;
+      font-weight: 900;
+      font-size: .84rem;
+      letter-spacing: .03em;
     }
 
     .dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: var(--accent);
+      background: var(--green-2);
+      box-shadow: 0 0 0 6px rgba(0,166,74,.12);
     }
 
     h1 {
       margin: 22px 0 18px;
-      max-width: 780px;
-      font-size: clamp(3rem, 6vw, 5.7rem);
-      line-height: 0.95;
-      letter-spacing: -0.075em;
-      color: var(--primary);
+      max-width: 820px;
+      font-size: clamp(3.3rem, 7vw, 7rem);
+      line-height: .89;
+      letter-spacing: -.085em;
+      color: var(--dark);
     }
+
+    .highlight { color: var(--green); }
 
     .lead {
-      max-width: 640px;
-      font-size: clamp(1.04rem, 1.55vw, 1.24rem);
-      color: var(--muted);
+      max-width: 670px;
       margin: 0 0 30px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.55vw, 1.25rem);
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
 
     .button {
       display: inline-flex;
+      min-height: 50px;
       align-items: center;
       justify-content: center;
-      gap: 9px;
-      min-height: 48px;
-      padding: 0 18px;
       border-radius: 999px;
-      font-weight: 800;
+      padding: 0 19px;
+      font-weight: 900;
       border: 1px solid transparent;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-    }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: var(--green); color: white; box-shadow: 0 18px 44px rgba(0, 140, 58, .24); }
+    .button.secondary { background: white; border-color: var(--line); color: var(--dark); }
 
-    .button.primary {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 16px 40px rgba(11,31,58,.20);
-    }
-
-    .button.secondary {
-      background: #fff;
-      border-color: var(--line);
-      color: var(--primary);
-    }
-
-    .hero-card {
+    .hero-visual {
       border-radius: var(--radius-xl);
-      background: linear-gradient(145deg, #ffffff, #edf4ff);
-      border: 1px solid rgba(219, 227, 238, .95);
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .visual {
-      min-height: 460px;
-      border-radius: 24px;
+      background: #008c3a;
+      min-height: 500px;
       overflow: hidden;
       position: relative;
-      background:
-        radial-gradient(circle at 20% 25%, rgba(47,128,237,.5), transparent 28%),
-        radial-gradient(circle at 78% 28%, rgba(18,52,95,.55), transparent 30%),
-        radial-gradient(circle at 50% 82%, rgba(47,128,237,.22), transparent 34%),
-        linear-gradient(135deg, #061528, #0b1f3a 52%, #163f75);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.7);
     }
 
-    .network {
+    .hero-visual::before {
+      content: "";
       position: absolute;
       inset: 0;
-      opacity: .84;
-      background-image:
-        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
-      background-size: 38px 38px;
-      mask-image: radial-gradient(circle at center, #000, transparent 78%);
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.12), transparent 32%),
+        radial-gradient(circle at 74% 22%, rgba(255,255,255,.2), transparent 23%),
+        radial-gradient(circle at 22% 72%, rgba(255,255,255,.15), transparent 28%);
     }
 
-    .floating-panel {
+    .molecule {
       position: absolute;
-      left: 26px;
-      right: 26px;
-      bottom: 26px;
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 22px;
-      background: rgba(255,255,255,.10);
-      backdrop-filter: blur(18px);
-      color: #fff;
-      padding: 22px;
+      inset: 0;
+      opacity: .45;
+      background-image:
+        linear-gradient(32deg, transparent 47%, rgba(255,255,255,.28) 48%, rgba(255,255,255,.28) 52%, transparent 53%),
+        linear-gradient(145deg, transparent 47%, rgba(255,255,255,.20) 48%, rgba(255,255,255,.20) 52%, transparent 53%);
+      background-size: 170px 170px;
+      animation: drift 18s linear infinite;
     }
 
-    .metrics {
+    @keyframes drift { to { transform: translate3d(70px, 70px, 0); } }
+
+    .hero-logo {
+      position: absolute;
+      inset: 0;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 16px;
+      place-items: center;
+      padding: 46px;
     }
 
-    .metric {
-      padding: 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.12);
+    .hero-logo img {
+      width: min(92%, 640px);
+      filter: drop-shadow(0 24px 42px rgba(0,0,0,.08));
     }
 
-    .metric strong {
-      display: block;
-      font-size: 1.45rem;
-      letter-spacing: -0.05em;
+    .status-card {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.26);
+      background: rgba(255,255,255,.13);
+      backdrop-filter: blur(18px);
+      color: white;
+      padding: 20px;
     }
 
-    .metric span {
-      color: rgba(255,255,255,.72);
-      font-size: .86rem;
-    }
+    .status-card strong { font-size: 1.05rem; }
+    .status-card p { margin: 6px 0 0; color: rgba(255,255,255,.8); }
 
-    section {
-      padding: 74px 0;
-    }
+    section { padding: 78px 0; }
 
     .section-head {
       display: flex;
-      align-items: end;
       justify-content: space-between;
-      gap: 28px;
+      align-items: end;
+      gap: 26px;
       margin-bottom: 30px;
     }
 
-    .section-kicker {
-      color: var(--accent);
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+    .kicker {
+      color: var(--green);
       font-size: .76rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .14em;
     }
 
     h2 {
-      margin: 7px 0 0;
-      font-size: clamp(2rem, 3.2vw, 3.4rem);
-      line-height: 1;
-      letter-spacing: -0.06em;
-      color: var(--primary);
+      margin: 8px 0 0;
+      color: var(--dark);
+      font-size: clamp(2.1rem, 3.5vw, 3.65rem);
+      line-height: .98;
+      letter-spacing: -.065em;
     }
 
-    .section-head p {
-      max-width: 500px;
-      color: var(--muted);
-      margin: 0;
-    }
+    .section-head p { max-width: 520px; margin: 0; color: var(--muted); }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 
     .card {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.05);
+      padding: 25px;
+      box-shadow: 0 14px 42px rgba(16,32,26,.05);
     }
 
     .card-icon {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
       display: grid;
       place-items: center;
-      border-radius: 15px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: 900;
+      background: var(--green-3);
+      color: var(--green);
+      font-weight: 950;
       margin-bottom: 18px;
     }
 
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.22rem;
-      letter-spacing: -0.03em;
-      color: var(--primary);
-    }
+    .card h3 { margin: 0 0 10px; color: var(--dark); font-size: 1.18rem; letter-spacing: -.03em; }
+    .card p { margin: 0; color: var(--muted); }
 
-    .card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .publication-list, .news-list {
+    .feature {
+      background: var(--dark);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: 42px;
       display: grid;
-      gap: 14px;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 36px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
     }
+
+    .feature::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      right: -160px;
+      top: -160px;
+      background: rgba(0,166,74,.22);
+    }
+
+    .feature h2, .feature p, .feature .mini-grid { position: relative; z-index: 1; }
+    .feature h2 { color: white; margin: 0 0 14px; }
+    .feature p { color: rgba(255,255,255,.72); margin: 0; }
+
+    .mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .mini {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .mini strong { display: block; font-size: 1.5rem; letter-spacing: -.05em; }
+    .mini span { color: rgba(255,255,255,.68); font-size: .9rem; }
+
+    .publication-list, .news-list { display: grid; gap: 14px; }
 
     .publication {
       display: grid;
-      grid-template-columns: 100px 1fr auto;
+      grid-template-columns: 92px 1fr auto;
       gap: 18px;
       align-items: start;
-      background: var(--surface);
+      background: white;
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 20px;
     }
 
-    .pub-year {
-      color: var(--accent);
-      font-weight: 900;
-    }
+    .year { color: var(--green); font-weight: 950; }
+    .publication h3 { margin: 0 0 6px; font-size: 1.06rem; letter-spacing: -.02em; color: var(--dark); }
+    .publication p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .tag { white-space: nowrap; padding: 7px 11px; border-radius: 999px; background: var(--green-3); color: var(--green); font-size: .78rem; font-weight: 900; }
 
-    .publication h3 {
-      margin: 0 0 6px;
-      font-size: 1.07rem;
-      color: var(--primary);
-      letter-spacing: -0.02em;
-    }
-
-    .publication p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .95rem;
-    }
-
-    .tag {
-      white-space: nowrap;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: var(--surface-soft);
-      color: var(--primary-soft);
-      font-size: .78rem;
-      font-weight: 800;
-    }
-
-    .people-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .person {
-      overflow: hidden;
-      padding: 0;
-    }
-
+    .people-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .person { padding: 0; overflow: hidden; }
     .avatar {
       aspect-ratio: 1 / 1;
       background:
-        radial-gradient(circle at 50% 25%, #d8e9ff 0 18%, transparent 19%),
-        linear-gradient(160deg, #edf4ff, #dbe3ee);
+        radial-gradient(circle at 50% 24%, rgba(0,140,58,.2) 0 18%, transparent 19%),
+        linear-gradient(150deg, #f4fff7, #dff5e7);
       border-bottom: 1px solid var(--line);
     }
-
-    .person-body {
-      padding: 18px;
-    }
-
-    .person h3 {
-      margin: 0;
-      color: var(--primary);
-      letter-spacing: -0.03em;
-    }
-
-    .person p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: .92rem;
-    }
+    .person-body { padding: 18px; }
+    .person h3 { margin: 0; color: var(--dark); letter-spacing: -.03em; }
+    .person p { margin: 5px 0 0; color: var(--muted); font-size: .92rem; }
 
     .news-item {
       display: grid;
-      grid-template-columns: 140px 1fr;
+      grid-template-columns: 135px 1fr;
       gap: 18px;
-      align-items: start;
-      background: var(--surface);
+      background: white;
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 20px;
     }
-
-    .date {
-      color: var(--accent);
-      font-weight: 900;
-    }
-
-    .news-item h3 {
-      margin: 0 0 6px;
-      color: var(--primary);
-    }
-
-    .news-item p {
-      margin: 0;
-      color: var(--muted);
-    }
+    .date { color: var(--green); font-weight: 950; }
+    .news-item h3 { margin: 0 0 6px; color: var(--dark); }
+    .news-item p { margin: 0; color: var(--muted); }
 
     .join {
-      background: var(--primary);
-      color: #fff;
       border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(0,140,58,.95), rgba(0,92,41,.96)),
+        var(--green);
+      color: white;
       padding: 44px;
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
       gap: 24px;
-      overflow: hidden;
-      position: relative;
+      box-shadow: var(--shadow);
     }
-
-    .join::after {
-      content: "";
-      position: absolute;
-      width: 340px;
-      height: 340px;
-      border-radius: 999px;
-      background: rgba(47, 128, 237, .28);
-      right: -110px;
-      top: -120px;
-    }
-
-    .join h2, .join p, .join a {
-      position: relative;
-      z-index: 1;
-    }
-
-    .join h2 {
-      color: #fff;
-      margin: 0 0 12px;
-    }
-
-    .join p {
-      max-width: 650px;
-      margin: 0;
-      color: rgba(255,255,255,.76);
-    }
+    .join h2 { color: white; margin: 0 0 12px; }
+    .join p { max-width: 670px; margin: 0; color: rgba(255,255,255,.78); }
 
     footer {
-      padding: 46px 0;
-      color: var(--muted);
       border-top: 1px solid var(--line);
+      padding: 42px 0;
+      color: var(--muted);
     }
+    .footer-inner { display: flex; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 900px) {
-      .hero-grid, .join {
-        grid-template-columns: 1fr;
-      }
-
-      .grid-3, .people-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .publication {
-        grid-template-columns: 1fr;
-      }
-
+    @media (max-width: 920px) {
+      .hero-grid, .feature, .join { grid-template-columns: 1fr; }
+      .grid-3, .people-grid { grid-template-columns: repeat(2, 1fr); }
       .nav-links {
         position: fixed;
         top: 74px;
@@ -542,64 +417,44 @@
         flex-direction: column;
         align-items: stretch;
         padding: 18px;
-        background: #fff;
+        border-radius: 20px;
         border: 1px solid var(--line);
-        border-radius: 18px;
+        background: white;
         box-shadow: var(--shadow);
       }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .menu-button {
-        display: inline-flex;
-      }
+      .nav-links.open { display: flex; }
+      .menu-button { display: inline-flex; }
     }
 
     @media (max-width: 640px) {
-      .container {
-        width: min(100% - 28px, var(--max));
-      }
-
-      .hero {
-        padding-top: 58px;
-      }
-
-      .visual {
-        min-height: 360px;
-      }
-
-      .metrics, .grid-3, .people-grid, .news-item {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head {
-        align-items: start;
-        flex-direction: column;
-      }
-
-      .join {
-        padding: 30px;
-      }
+      .container { width: min(100% - 28px, var(--max)); }
+      .hero { padding: 56px 0 52px; }
+      .hero-visual { min-height: 380px; }
+      .section-head { flex-direction: column; align-items: start; }
+      .grid-3, .people-grid, .mini-grid, .publication, .news-item { grid-template-columns: 1fr; }
+      .feature, .join { padding: 30px; }
+      .brand-text span { display: none; }
     }
   </style>
 </head>
 <body>
   <nav class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="#home" aria-label="Lab home">
-        <span class="brand-mark"></span>
-        <span>AIS Lab</span>
+      <a class="brand" href="#home" aria-label="MINT Lab home">
+        <img class="brand-logo" src="Logo.png" alt="MINT Lab leaf logo" />
+        <span class="brand-text">
+          <strong>MINT Lab</strong>
+          <span>Materials Informatics & Theory</span>
+        </span>
       </a>
       <button class="menu-button" aria-label="Open navigation">Menu</button>
       <div class="nav-links">
         <a href="#research">Research</a>
+        <a href="#approach">Approach</a>
         <a href="#publications">Publications</a>
         <a href="#people">People</a>
         <a href="#news">News</a>
         <a href="#join">Join Us</a>
-        <a href="#contact">Contact</a>
       </div>
     </div>
   </nav>
@@ -608,26 +463,23 @@
     <header class="hero">
       <div class="container hero-grid">
         <div class="reveal">
-          <div class="eyebrow"><span class="dot"></span> College of Engineering Research Laboratory</div>
-          <h1>Advanced Intelligent Systems Lab</h1>
-          <p class="lead">We build reliable intelligent systems at the intersection of robotics, machine learning, embedded computing, and human-centered engineering.</p>
+          <div class="eyebrow"><span class="dot"></span> Materials Informatics & Theory Laboratory</div>
+          <h1>AI for <span class="highlight">materials</span> discovery.</h1>
+          <p class="lead">MINT Lab develops computational theory, machine learning models, and data-driven workflows to understand, predict, and design functional materials.</p>
           <div class="hero-actions">
             <a class="button primary" href="#research">Explore Research</a>
-            <a class="button secondary" href="#join">Open Positions</a>
+            <a class="button secondary" href="#join">Join the Lab</a>
           </div>
         </div>
-        <div class="hero-card reveal">
-          <div class="visual" role="img" aria-label="Abstract engineering research visualization">
-            <div class="network"></div>
-            <div class="floating-panel">
-              <strong>Research focus</strong>
-              <p style="margin: 8px 0 0; color: rgba(255,255,255,.76);">Autonomous systems, learning algorithms, and engineering platforms for real-world deployment.</p>
-              <div class="metrics">
-                <div class="metric"><strong>25+</strong><span>Publications</span></div>
-                <div class="metric"><strong>8</strong><span>Members</span></div>
-                <div class="metric"><strong>4</strong><span>Projects</span></div>
-              </div>
-            </div>
+
+        <div class="hero-visual reveal" aria-label="MINT Lab visual identity">
+          <div class="molecule"></div>
+          <div class="hero-logo">
+            <img src="picture1.png" alt="MINT Lab full logo" />
+          </div>
+          <div class="status-card">
+            <strong>Materials · Informatics · Theory</strong>
+            <p>From atomistic simulations to graph learning and autonomous discovery workflows.</p>
           </div>
         </div>
       </div>
@@ -637,27 +489,45 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-kicker">Research</div>
-            <h2>Engineering intelligence for complex systems.</h2>
+            <div class="kicker">Research</div>
+            <h2>Computational materials research with a theory-first mindset.</h2>
           </div>
-          <p>Replace these cards with your lab's actual research themes. Keep each description short and outcome-oriented.</p>
+          <p>Replace these themes with the lab's exact research areas. Keep the wording concise and visually balanced.</p>
         </div>
         <div class="grid-3">
           <article class="card reveal">
             <div class="card-icon">01</div>
-            <h3>Robot Learning</h3>
-            <p>Learning-based control, perception, and decision-making for robots operating in uncertain physical environments.</p>
+            <h3>Materials Informatics</h3>
+            <p>Data-driven modeling for discovering structure-property relationships across complex materials spaces.</p>
           </article>
           <article class="card reveal">
             <div class="card-icon">02</div>
-            <h3>Embedded AI Systems</h3>
-            <p>Efficient algorithms and hardware-aware software stacks for deploying intelligence on edge devices.</p>
+            <h3>Atomistic Machine Learning</h3>
+            <p>Graph neural networks, interatomic potentials, and representation learning for chemistry and materials.</p>
           </article>
           <article class="card reveal">
             <div class="card-icon">03</div>
-            <h3>Human-Centered Engineering</h3>
-            <p>Interactive systems that improve safety, usability, and trust in real-world engineering applications.</p>
+            <h3>Theory & Simulation</h3>
+            <p>First-principles calculations, statistical learning, and theoretical frameworks for predictive materials design.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="container">
+        <div class="feature reveal">
+          <div>
+            <div class="kicker">Approach</div>
+            <h2>Connecting physical insight with scalable computation.</h2>
+            <p>Our work combines domain theory, high-throughput computation, machine learning, and interpretable analysis to accelerate materials research.</p>
+          </div>
+          <div class="mini-grid">
+            <div class="mini"><strong>DFT</strong><span>first-principles workflows</span></div>
+            <div class="mini"><strong>GNN</strong><span>graph-based learning</span></div>
+            <div class="mini"><strong>HPC</strong><span>large-scale computation</span></div>
+            <div class="mini"><strong>AI4Sci</strong><span>materials discovery</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -666,35 +536,35 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-kicker">Publications</div>
+            <div class="kicker">Publications</div>
             <h2>Selected recent work.</h2>
           </div>
-          <p>Show only representative publications on the homepage. Put the full list on a separate page later.</p>
+          <p>Use this homepage section for representative papers only. Add a separate full publications page later.</p>
         </div>
         <div class="publication-list">
           <article class="publication reveal">
-            <div class="pub-year">2026</div>
+            <div class="year">2026</div>
             <div>
-              <h3>Robust Multimodal Planning for Autonomous Engineering Systems</h3>
-              <p>J. Kim, S. Lee, K. Kang · International Conference on Robotics and Automation</p>
+              <h3>Graph Learning Frameworks for Functional Materials Discovery</h3>
+              <p>Author A, Author B, K. Kang · Journal / Conference Name</p>
             </div>
-            <span class="tag">Conference</span>
+            <span class="tag">AI4Materials</span>
           </article>
           <article class="publication reveal">
-            <div class="pub-year">2025</div>
+            <div class="year">2025</div>
             <div>
-              <h3>Hardware-Aware Neural Control for Edge Robotics</h3>
-              <p>M. Park, H. Choi, K. Kang · IEEE Transactions on Industrial Electronics</p>
+              <h3>Interpretable Materials Informatics from Atomistic Descriptors</h3>
+              <p>Author A, Author B, K. Kang · Journal / Conference Name</p>
             </div>
-            <span class="tag">Journal</span>
+            <span class="tag">Theory</span>
           </article>
           <article class="publication reveal">
-            <div class="pub-year">2025</div>
+            <div class="year">2025</div>
             <div>
-              <h3>Safety-Constrained Learning in Human-Robot Collaborative Environments</h3>
-              <p>A. Jung, Y. Han, K. Kang · ACM/IEEE International Conference on HRI</p>
+              <h3>High-Throughput Screening of Sustainable Materials</h3>
+              <p>Author A, Author B, K. Kang · Journal / Conference Name</p>
             </div>
-            <span class="tag">Best Paper</span>
+            <span class="tag">Computation</span>
           </article>
         </div>
       </div>
@@ -704,28 +574,16 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-kicker">People</div>
-            <h2>Researchers and students.</h2>
+            <div class="kicker">People</div>
+            <h2>Researchers at MINT Lab.</h2>
           </div>
-          <p>Use consistent portraits. Good member photos make the entire website look more credible.</p>
+          <p>Replace placeholders with actual member photos. Consistent portraits will make the site look dramatically better.</p>
         </div>
         <div class="people-grid">
-          <article class="card person reveal">
-            <div class="avatar"></div>
-            <div class="person-body"><h3>Prof. Name</h3><p>Principal Investigator</p></div>
-          </article>
-          <article class="card person reveal">
-            <div class="avatar"></div>
-            <div class="person-body"><h3>Student Name</h3><p>Ph.D. Student · Robotics</p></div>
-          </article>
-          <article class="card person reveal">
-            <div class="avatar"></div>
-            <div class="person-body"><h3>Student Name</h3><p>M.S. Student · Embedded AI</p></div>
-          </article>
-          <article class="card person reveal">
-            <div class="avatar"></div>
-            <div class="person-body"><h3>Student Name</h3><p>Undergraduate Intern</p></div>
-          </article>
+          <article class="card person reveal"><div class="avatar"></div><div class="person-body"><h3>Prof. Name</h3><p>Principal Investigator</p></div></article>
+          <article class="card person reveal"><div class="avatar"></div><div class="person-body"><h3>Student Name</h3><p>Ph.D. Student · Materials AI</p></div></article>
+          <article class="card person reveal"><div class="avatar"></div><div class="person-body"><h3>Student Name</h3><p>M.S. Student · Simulation</p></div></article>
+          <article class="card person reveal"><div class="avatar"></div><div class="person-body"><h3>Student Name</h3><p>Undergraduate Intern</p></div></article>
         </div>
       </div>
     </section>
@@ -734,24 +592,15 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-kicker">News</div>
-            <h2>Recent updates.</h2>
+            <div class="kicker">News</div>
+            <h2>Lab updates.</h2>
           </div>
-          <p>News makes the lab feel active. Update this section with accepted papers, awards, talks, and openings.</p>
+          <p>Keep this updated with publications, awards, talks, new projects, and recruiting information.</p>
         </div>
         <div class="news-list">
-          <article class="news-item reveal">
-            <div class="date">May 2026</div>
-            <div><h3>One paper accepted to a leading robotics conference.</h3><p>Congratulations to the student authors and collaborators.</p></div>
-          </article>
-          <article class="news-item reveal">
-            <div class="date">Mar 2026</div>
-            <div><h3>New industry-sponsored research project launched.</h3><p>The project focuses on dependable AI systems for real-world engineering applications.</p></div>
-          </article>
-          <article class="news-item reveal">
-            <div class="date">Jan 2026</div>
-            <div><h3>Graduate student positions are open.</h3><p>We are looking for motivated students interested in robotics, AI systems, and embedded intelligence.</p></div>
-          </article>
+          <article class="news-item reveal"><div class="date">May 2026</div><div><h3>New paper accepted.</h3><p>Congratulations to the authors and collaborators.</p></div></article>
+          <article class="news-item reveal"><div class="date">Mar 2026</div><div><h3>New materials informatics project launched.</h3><p>The project focuses on AI-driven discovery of functional materials.</p></div></article>
+          <article class="news-item reveal"><div class="date">Jan 2026</div><div><h3>Graduate positions are open.</h3><p>We welcome motivated students interested in materials theory, computation, and machine learning.</p></div></article>
         </div>
       </div>
     </section>
@@ -760,8 +609,8 @@
       <div class="container">
         <div class="join reveal">
           <div>
-            <h2>Join our lab.</h2>
-            <p>We welcome motivated graduate students and interns with interests in intelligent systems, robotics, embedded computing, and applied machine learning.</p>
+            <h2>Join MINT Lab.</h2>
+            <p>We are looking for students interested in materials informatics, computational theory, machine learning, and AI for science.</p>
           </div>
           <a class="button secondary" href="mailto:professor@example.edu">Contact PI</a>
         </div>
@@ -771,13 +620,8 @@
 
   <footer id="contact">
     <div class="container footer-inner">
-      <div>
-        <strong style="color: var(--primary);">Advanced Intelligent Systems Lab</strong><br />
-        College of Engineering, Your University
-      </div>
-      <div>
-        professor@example.edu · Engineering Building 000
-      </div>
+      <div><strong style="color: var(--dark);">MINT Lab</strong><br />Materials Informatics & Theory Laboratory</div>
+      <div>College of Engineering, Your University · professor@example.edu</div>
     </div>
   </footer>
 
