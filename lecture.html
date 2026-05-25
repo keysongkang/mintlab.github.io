@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MINT Lab | Lecture</title>
+  <link rel="stylesheet" href="assets/css/lecture.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="Logo.png" alt="MINT Lab logo" />
+        <span class="brand-text">
+          <strong>MINT Lab</strong>
+          <span>Materials Informatics & Theory Laboratory</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="research.html">Research</a>
+        <a href="people.html">People</a>
+        <div class="nav-item">
+          <a href="publications.html">Publications</a>
+          <div class="submenu">
+            <a href="publications.html">Papers</a>
+            <a href="patents.html">Patents</a>
+          </div>
+        </div>
+        <a class="active" href="lecture.html">Lecture</a>
+        <div class="nav-item">
+          <a href="news.html">Group</a>
+          <div class="submenu">
+            <a href="news.html">News</a>
+            <a href="gallery.html">Gallery</a>
+          </div>
+        </div>
+        <img class="nav-art" src="Picture2.svg" alt="" />
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <h1>Lecture</h1>
+      <div class="highlight-line">재료정보이론연구실 강의</div>
+      <p class="lead">Courses and teaching materials related to computational materials science, materials informatics, and AI for materials.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="lecture-list" id="lecture-list"></div>
+    <div class="empty-lecture" id="empty-lecture">Lecture information coming soon.</div>
+  </main>
+
+  <footer>
+    <div class="container">
+      MINT Lab · Materials Informatics & Theory Laboratory
+    </div>
+  </footer>
+
+  <script>
+    const lectures = [
+      // {
+      //   term: "2026 Spring",
+      //   title: "Computational Materials Science",
+      //   meta: "Undergraduate / Graduate",
+      //   description: "First-principles calculations, atomistic modeling, and data-driven materials research."
+      // },
+    ];
+
+    const list = document.querySelector("#lecture-list");
+    const empty = document.querySelector("#empty-lecture");
+
+    if (lectures.length > 0) {
+      empty.hidden = true;
+      list.innerHTML = lectures.map((lecture) => `
+        <article class="lecture-card">
+          <div class="term">${lecture.term}</div>
+          <div>
+            <h2>${lecture.title}</h2>
+            <div class="lecture-meta">${lecture.meta}</div>
+            <p>${lecture.description}</p>
+          </div>
+        </article>
+      `).join("");
+    }
+  </script>
+</body>
+</html>

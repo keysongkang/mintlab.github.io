@@ -1,0 +1,151 @@
+:root {
+      --bg: #f6fbf7;
+      --surface: #ffffff;
+      --surface-2: #eef8f1;
+      --ink: #10201a;
+      --muted: #5f7168;
+      --line: #d8eadf;
+      --green: #008c3a;
+      --green-2: #00a64a;
+      --green-3: #dff5e7;
+      --dark: #07130e;
+      --shadow: 0 28px 80px rgba(0, 70, 32, 0.12);
+      --radius-xl: 34px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(0, 166, 74, .12), transparent 34rem),
+        linear-gradient(180deg, #fbfffc 0%, var(--bg) 48%, #ffffff 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid rgba(216, 234, 223, .82);
+      background: rgba(246, 251, 247, .82);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand-text strong { display: block; line-height: 1; font-size: 1.05rem; }
+    .brand-text span { display: block; color: var(--muted); font-size: .74rem; letter-spacing: .01em; margin-top: 3px; }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      color: var(--muted);
+      font-size: .94rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--green); }
+
+    .nav-art {
+      display: block;
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      flex: 0 0 80px;
+    }
+
+    .nav-item {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      min-width: 104px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 14px 32px rgba(0,0,0,.08);
+      z-index: 60;
+    }
+
+    .nav-item:hover .submenu,
+    .nav-item:focus-within .submenu {
+      display: grid;
+      gap: 4px;
+    }
+
+    .submenu a {
+      padding: 8px 10px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .submenu a:hover {
+      background: var(--green-soft);
+      text-decoration: none;
+    }
+
+    .menu-button {
+      display: none;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-weight: 800;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    h1 { color: var(--dark); }
+    .news-list { display: grid; gap: 14px; }
+    .news-item { display: grid; grid-template-columns: 135px 1fr; gap: 18px; background: white; border: 1px solid var(--line); border-radius: 18px; padding: 20px; align-items: start; }
+    .thumb { width: 120px; height: 120px; object-fit: contain; border-radius: 12px; }
+    .news-body { display: block; }
+    .date { color: var(--green); font-weight: 900; margin-bottom: 8px; }
+    .main-content { padding: 30px 0 40px; }
