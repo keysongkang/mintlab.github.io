@@ -10,7 +10,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
-        <img class="brand-logo" src="Logo.png" alt="MINT Lab logo" />
+        <img class="brand-logo" src="assets/images/site/mint-leaf-icon.png" alt="MINT Lab logo" />
         <span class="brand-text">
           <strong>MINT Lab</strong>
           <span>Materials Informatics & Theory Laboratory</span>
@@ -34,15 +34,15 @@
             <a class="active" href="gallery.html">Gallery</a>
           </div>
         </div>
-        <img class="nav-art" src="Picture2.svg" alt="" />
+        <img class="nav-art" src="assets/images/site/mint-lab-square-logo.svg" alt="" />
       </div>
     </div>
   </nav>
 
   <header>
     <div class="container">
-      <h1>Gallery</h1>
-      <div class="highlight-line">재료정보이론연구실 사진 기록</div>
+      <h1>MINT Lab Gallery</h1>
+      <div class="highlight-line">재료정보이론연구실 추억 사진첩</div>
       <p class="lead">Photos from MINT Lab activities, meetings, presentations, and shared milestones.</p>
     </div>
   </header>
@@ -52,16 +52,39 @@
     <div class="empty-gallery" id="empty-gallery">Photos coming soon.</div>
   </main>
 
-  <footer>
-    <div class="container">
-      MINT Lab · Materials Informatics & Theory Laboratory
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" type="button" aria-label="Close enlarged photo">×</button>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous photo">‹</button>
+    <figure class="lightbox-content">
+      <img id="lightbox-image" src="" alt="" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Next photo">›</button>
+  </div>
+  <footer id="contact">
+    <div class="container footer-inner">
+      <div>
+        <strong style="color: var(--dark);">
+          MINT Lab (재료정보이론연구실)
+        </strong><br />
+        Materials Informatics & Theory Laboratory
+      </div>
+      <div>
+        School of Materials Science and Engineering · Chonnam National University
+        <br />
+        <span style="display: block; text-align: right;">
+          전남대학교 신소재공학부
+        </span>
+      </div>
     </div>
   </footer>
 
   <script>
     const photos = [
-      // { src: "gallery/lab-photo-001.jpg", caption: "Lab meeting, 2026" },
-      // { src: "gallery/conference-001.jpg", caption: "Conference presentation" },
+      { src: "gallery/20260514_0.png", caption: "스승의날 (May 14, 2026)" },
+      { src: "assets/images/site/mint-lab-horizontal-logo.png", caption: "앞으로 있을 추억" },
+      { src: "assets/images/site/mint-lab-horizontal-logo.png", caption: "앞으로 있을 추억" },
+      { src: "assets/images/site/mint-lab-horizontal-logo.png", caption: "앞으로 있을 추억" },
     ];
 
     const grid = document.querySelector("#gallery-grid");
@@ -69,13 +92,76 @@
 
     if (photos.length > 0) {
       empty.hidden = true;
-      grid.innerHTML = photos.map((photo) => `
-        <figure class="gallery-item">
+      grid.innerHTML = photos.map((photo, index) => `
+        <figure class="gallery-item" tabindex="0" role="button" data-photo-index="${index}" aria-label="Open photo: ${photo.caption}">
           <img src="${photo.src}" alt="${photo.caption}">
           <figcaption>${photo.caption}</figcaption>
         </figure>
       `).join("");
     }
+
+    const lightbox = document.querySelector("#lightbox");
+    const lightboxImage = document.querySelector("#lightbox-image");
+    const lightboxCaption = document.querySelector("#lightbox-caption");
+    const closeButton = document.querySelector(".lightbox-close");
+    const previousButton = document.querySelector(".lightbox-prev");
+    const nextButton = document.querySelector(".lightbox-next");
+    let currentPhotoIndex = 0;
+
+    function showPhoto(index) {
+      currentPhotoIndex = (index + photos.length) % photos.length;
+      const photo = photos[currentPhotoIndex];
+
+      lightboxImage.src = photo.src;
+      lightboxImage.alt = photo.caption;
+      lightboxCaption.textContent = photo.caption;
+    }
+
+    function openLightbox(item) {
+      showPhoto(Number(item.dataset.photoIndex || 0));
+      lightbox.hidden = false;
+      document.body.classList.add("lightbox-open");
+      closeButton.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      document.body.classList.remove("lightbox-open");
+      lightboxImage.src = "";
+    }
+
+    function showPreviousPhoto() {
+      showPhoto(currentPhotoIndex - 1);
+    }
+
+    function showNextPhoto() {
+      showPhoto(currentPhotoIndex + 1);
+    }
+
+    grid.addEventListener("click", (event) => {
+      const item = event.target.closest(".gallery-item");
+      if (item) openLightbox(item);
+    });
+
+    grid.addEventListener("keydown", (event) => {
+      const item = event.target.closest(".gallery-item");
+      if (!item || !["Enter", " "].includes(event.key)) return;
+      event.preventDefault();
+      openLightbox(item);
+    });
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox || event.target === closeButton) closeLightbox();
+    });
+
+    previousButton.addEventListener("click", showPreviousPhoto);
+    nextButton.addEventListener("click", showNextPhoto);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !lightbox.hidden) closeLightbox();
+      if (event.key === "ArrowLeft" && !lightbox.hidden) showPreviousPhoto();
+      if (event.key === "ArrowRight" && !lightbox.hidden) showNextPhoto();
+    });
   </script>
 </body>
 </html>

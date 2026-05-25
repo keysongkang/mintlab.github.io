@@ -11,7 +11,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html" aria-label="MINT Lab home">
-        <img class="brand-logo" src="Logo.png" alt="MINT Lab leaf logo" />
+        <img class="brand-logo" src="assets/images/site/mint-leaf-icon.png" alt="MINT Lab leaf logo" />
         <span class="brand-text">
           <strong>MINT Lab</strong>
           <span>Materials Informatics & Theory Laboratory</span>
@@ -36,7 +36,7 @@
             <a href="gallery.html">Gallery</a>
           </div>
         </div>
-        <img class="nav-art" src="Picture2.svg" alt="" />
+        <img class="nav-art" src="assets/images/site/mint-lab-square-logo.svg" alt="" />
       </div>
     </div>
   </nav>
@@ -58,7 +58,7 @@
         <div class="hero-visual reveal" aria-label="MINT Lab visual identity">
           <div class="molecule"></div>
           <div class="hero-logo">
-            <img src="logo_full.svg" alt="MINT Lab full logo" />
+            <img src="assets/images/site/mint-lab-full-logo.svg" alt="MINT Lab full logo" />
           </div>
           <div class="status-card">
             <strong>전산재료과학 & 소재인공지능 연구</strong>
@@ -116,10 +116,10 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="kicker">News</div>
-            <h2>Lab updates.</h2>
+            <div class="kicker">News, 연구실 소식</div>
+            <h2>Lab Updates</h2>
           </div>
-          <p>Updates on publications, research, group events, and conferences.</p>
+          <p>Updates on publications, research, group events, and conferences.<br />재료정보이론연구실의 최신 출판, 연구, 학회 활동 등 다양한 소식을 확인하세요!</p>
         </div>
 
         <div class="news-list" id="news-list">
@@ -136,19 +136,29 @@
       <div class="container">
         <div class="join reveal">
           <div>
-            <h2>Join MINT Lab.</h2>
-            <p>We welcome students and collaborators interested in microscopic materials physics, first-principles simulation, AI-accelerated workflows, and experiment–computation collaboration.</p>
+            <h2>Join MINT Lab (재료정보이론연구실)</h2>
+            <p>We are looking for motivated graduate students interested in Computational Materials Science and AI-Materials. If you are passionate about research in related fields, please feel free to contact us via email. </br> 재료정보이론연구실에서는 연구에 열의를 가진 대학원생을 모집하고 있습니다. 본 연구실은 전산재료과학 및 소재인공지능 연구를 중심으로 다양한 연구를 수행하고 있습니다. 관련 분야에 관심이 있고 적극적으로 연구에 참여하고자 하는 학생들의 지원을 환영합니다. 관심 있는 학생은 이메일로 문의해 주시기 바랍니다.</p>
           </div>
           <a class="button secondary" href="mailto:professor@example.edu">Contact PI</a>
         </div>
       </div>
     </section>
   </main>
-
   <footer id="contact">
     <div class="container footer-inner">
-      <div><strong style="color: var(--dark);">MINT Lab</strong><br />Materials Informatics & Theory Laboratory</div>
-      <div>School of Materials Science and Engineering · Chonnam National University</div>
+      <div>
+        <strong style="color: var(--dark);">
+          MINT Lab (재료정보이론연구실)
+        </strong><br />
+        Materials Informatics & Theory Laboratory
+      </div>
+      <div>
+        School of Materials Science and Engineering · Chonnam National University
+        <br />
+        <span style="display: block; text-align: right;">
+          전남대학교 신소재공학부
+        </span>
+      </div>
     </div>
   </footer>
 
@@ -195,33 +205,39 @@
           const clone = item.cloneNode(true);
           clone.classList.remove('reveal');
 
-          // Ensure there is an image; if missing, insert default Logo.png
+          // Ensure there is an image; if missing, insert the default news image.
           let img = clone.querySelector('img');
           if (!img) {
             img = document.createElement('img');
-            img.className = 'thumb';
+            img.className = 'thumb thumb-contain';
             img.alt = '';
             // insert before the first child (expected .news-body)
             clone.insertBefore(img, clone.firstChild);
           }
 
           // Fix relative image src attributes so they load correctly from index.html
-          const logoUrl = new URL('Logo.png', base).href;
+          const defaultNewsImageUrl = new URL('assets/images/site/mint-lab-emblem-logo.svg', base).href;
           clone.querySelectorAll('img').forEach((imgEl) => {
             const src = imgEl.getAttribute('src');
             if (!src) {
-              imgEl.src = logoUrl;
+              imgEl.classList.add('thumb-contain');
+              imgEl.src = defaultNewsImageUrl;
               return;
             }
             try {
               const resolved = new URL(src, base).href;
               imgEl.src = resolved;
             } catch (e) {
-              imgEl.src = logoUrl;
+              imgEl.classList.add('thumb-contain');
+              imgEl.src = defaultNewsImageUrl;
             }
 
             // Fallback to logo if the image fails to load
-            imgEl.onerror = () => { imgEl.onerror = null; imgEl.src = logoUrl; };
+            imgEl.onerror = () => {
+              imgEl.onerror = null;
+              imgEl.classList.add('thumb-contain');
+              imgEl.src = defaultNewsImageUrl;
+            };
           });
 
           container.appendChild(clone);

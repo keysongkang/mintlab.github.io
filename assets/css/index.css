@@ -8,6 +8,7 @@
       --green: #008c3a;
       --green-2: #00a64a;
       --green-3: #dff5e7;
+      --green-soft: #dff5e7;
       --dark: #07130e;
       --shadow: 0 28px 80px rgba(0, 70, 32, 0.12);
       --radius-xl: 34px;
@@ -245,8 +246,9 @@
       box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,.7);
       margin-top: 3.5rem;
-      height: 90%;
-      /* min-height: 0; */
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      min-height: 460px;
     }
 
     .hero-visual::before {
@@ -276,7 +278,8 @@
     }
 
     .hero-logo img {
-      width: 300%; /*min(200%, 820px);*/
+      width: min(300%, 980px);
+      height: auto;
       filter: drop-shadow(0 24px 42px rgba(0,0,0,.08));
     }
 
@@ -420,12 +423,28 @@
 
     .news-item {
       display: grid;
-      grid-template-columns: 135px 1fr;
+      grid-template-columns: minmax(260px, 350px) 1fr;
       gap: 18px;
+      align-items: center;
       background: white;
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 20px;
+    }
+    .news-item .thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      object-fit: cover;
+      object-position: center;
+      justify-self: center;
+      align-self: center;
+      border-radius: 12px;
+      background: var(--surface-2);
+    }
+    .news-item .thumb-contain {
+      object-fit: contain;
+      padding: 16px;
     }
     .date { color: var(--green); font-weight: 950; }
     .news-item h3 { margin: 0 0 6px; color: var(--dark); }
@@ -486,4 +505,56 @@
       .grid-3, .people-grid, .mini-grid, .publication, .news-item { grid-template-columns: 1fr; }
       .feature, .join { padding: 30px; }
       .brand-text span { display: none; }
+    }
+
+    .links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .video-thumb {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      justify-self: center;
+      align-self: center;
+      border-radius: 12px;
+      background: var(--surface-2);
+    }
+
+    .video-thumb .thumb {
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      background: rgba(0,0,0,.22);
+      transition: background .2s ease;
+    }
+
+    .video-thumb:hover .play-overlay {
+      background: rgba(0,0,0,.35);
     }
