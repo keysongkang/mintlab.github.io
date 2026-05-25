@@ -192,15 +192,20 @@
 
     .paper::after {
       content: "";
+      display: block;
       position: absolute;
       top: 24px;
       right: 24px;
       height: 188px;
       width: min(320px, 30%);
       border-radius: 18px;
-      background: var(--paper-image, url("Picture2.svg")) center/contain no-repeat;
+      background-image: var(--paper-image, url("../../Picture2.svg"));
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
       background-color: transparent;
       z-index: 0;
+      pointer-events: none;
     }
 
     .paper h3 {
@@ -308,7 +313,7 @@
 
     @media (max-width: 840px) {
       .paper {
-        min-height: 420px;
+        min-height: auto;
         padding-right: 24px;
       }
 
@@ -317,6 +322,7 @@
       }
 
       .paper::after {
+        display: block;
         position: relative;
         top: auto;
         right: auto;

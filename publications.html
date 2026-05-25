@@ -422,16 +422,21 @@
   </footer>
   <script>
     document.querySelectorAll(".paper").forEach((paper) => {
-      const paperImage = getComputedStyle(paper).getPropertyValue("--paper-image").trim();
+      const paperImage = paper.style.getPropertyValue("--paper-image").trim();
       const match = paperImage.match(/^url\(["']?(.+?)["']?\)$/);
 
-      if (!match || match[1] === "Picture2.svg") return;
+      if (!match) return;
+
+      const fallbackSrc = new URL("Picture2.svg", document.baseURI).href;
+      const resolvedSrc = new URL(match[1], document.baseURI).href;
+
+      paper.style.setProperty("--paper-image", `url("${resolvedSrc}")`);
 
       const image = new Image();
       image.onerror = () => {
-        paper.style.setProperty("--paper-image", 'url("Picture2.svg")');
+        paper.style.setProperty("--paper-image", `url("${fallbackSrc}")`);
       };
-      image.src = match[1];
+      image.src = resolvedSrc;
     });
   </script>
 </body>
