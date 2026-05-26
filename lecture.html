@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MINT Lab | Lecture</title>
   <link rel="stylesheet" href="assets/css/lecture.css" />
+  <link rel="stylesheet" href="assets/css/navigation.css" />
+  <script src="assets/js/navigation.js" defer></script>
 </head>
 <body>
   <nav class="nav">
@@ -16,6 +18,7 @@
           <span>Materials Informatics & Theory Laboratory</span>
         </span>
       </a>
+      <button class="menu-button" aria-label="Open navigation">Menu</button>
       <div class="nav-links">
         <a href="research.html">Research</a>
         <a href="people.html">People</a>
@@ -48,8 +51,58 @@
   </header>
 
   <main class="container">
-    <div class="lecture-list" id="lecture-list"></div>
-    <div class="empty-lecture" id="empty-lecture">Lecture information coming soon.</div>
+    <div class="course-list">
+      <article class="course-card">
+        <div class="course-code">MSE3043</div>
+        <div class="course-body">
+          <h2>Nonferrous Materials</h2>
+          <div class="lecture-meta">비철재료</div>
+        </div>
+        <div class="term-list">
+          <span>2025-2</span>
+        </div>
+      </article>
+      <article class="course-card">
+        <div class="course-code">MSE9088</div>
+        <div class="course-body">
+          <h2>Foundry Engineering</h2>
+          <div class="lecture-meta">주조공학</div>
+        </div>
+        <div class="term-list">
+          <span>2025-2</span>
+        </div>
+      </article>
+      <article class="course-card">
+        <div class="course-code">MSE9113</div>
+        <div class="course-body">
+          <h2>Introduction to Computational Materials Science</h2>
+          <div class="lecture-meta">전산재료개론</div>
+        </div>
+        <div class="term-list">
+          <span>2026-1</span>
+        </div>
+      </article>
+      <article class="course-card">
+        <div class="course-code">MSE9114</div>
+        <div class="course-body">
+          <h2>Materials Joining and Packaging</h2>
+          <div class="lecture-meta">소재접합및패키징</div>
+        </div>
+        <div class="term-list">
+          <span>2026-1</span>
+        </div>
+      </article>
+      <article class="course-card">
+        <div class="course-code">MSE2026</div>
+        <div class="course-body">
+          <h2>Materials Engineering Project 2</h2>
+          <div class="lecture-meta">신소재프로젝트2</div>
+        </div>
+        <div class="term-list">
+          <span>2026-1</span>
+        </div>
+      </article>
+    </div>
   </main>
   <footer id="contact">
     <div class="container footer-inner">
@@ -69,32 +122,5 @@
     </div>
   </footer>
 
-  <script>
-    const lectures = [
-      // {
-      //   term: "2026 Spring",
-      //   title: "Computational Materials Science",
-      //   meta: "Undergraduate / Graduate",
-      //   description: "First-principles calculations, atomistic modeling, and data-driven materials research."
-      // },
-    ];
-
-    const list = document.querySelector("#lecture-list");
-    const empty = document.querySelector("#empty-lecture");
-
-    if (lectures.length > 0) {
-      empty.hidden = true;
-      list.innerHTML = lectures.map((lecture) => `
-        <article class="lecture-card">
-          <div class="term">${lecture.term}</div>
-          <div>
-            <h2>${lecture.title}</h2>
-            <div class="lecture-meta">${lecture.meta}</div>
-            <p>${lecture.description}</p>
-          </div>
-        </article>
-      `).join("");
-    }
-  </script>
 </body>
 </html>

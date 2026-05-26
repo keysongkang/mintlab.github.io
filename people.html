@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MINT Lab | People</title>
   <link rel="stylesheet" href="assets/css/people.css" />
+  <link rel="stylesheet" href="assets/css/navigation.css" />
+  <script src="assets/js/navigation.js" defer></script>
 </head>
 <body>
   <nav class="nav">
@@ -17,6 +19,7 @@
           <span>Materials Informatics & Theory Laboratory</span>
         </span>
       </a>
+      <button class="menu-button" aria-label="Open navigation">Menu</button>
       <div class="nav-links">
         <a href="research.html">Research</a>
         <a class="active" href="people.html">People</a>
@@ -65,7 +68,7 @@
           <div class="links">
             <a class="button" href="mailto:kisung.kang@jnu.ac.kr">Email</a>
             <a class="button" href="https://scholar.google.com/citations?user=qfndFhkAAAAJ&hl=en">Google Scholar</a>
-            <!-- <a class="button" href="#">CV</a> -->
+            <a class="button" href="https://maps.app.goo.gl/4xYopVW4CUGewHND7">공과대학6호관 312호</a>
           </div>
         </div>
       </article>
@@ -120,10 +123,25 @@
     </section> -->
 
     <section>
-      <h2 class="section-title">Undergraduate Researchers</h2>
+      <h2 class="section-title">Graduate Students</h2>
       <div class="people-grid">
         <article class="person">
           <div class="person-photo"><img src="assets/images/site/mint-lab-profile.png" alt="Profile placeholder" /></div>
+          <div class="person-body">
+            <h3 class="profile-name">Open Position</h3>
+            <div class="profile-position">대학원생(PhD, MS)</div>
+            <div class="profile-joined">Waiting for you</div>
+            <!-- <div class="profile-research">Graph neural networks for materials</div> -->
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Undergraduate Researchers</h2>
+      <div class="people-grid">
+        <article class="person">
+          <div class="person-photo"><img src="assets/images/profile/03_MSK.jpg" alt="Profile placeholder" /></div>
           <div class="person-body">
             <h3 class="profile-name">Myeongseon Kim<br>(김명선)</h3>
             <div class="profile-position">Undergraduate Intern</div>
@@ -141,7 +159,7 @@
           </div>
         </article>
         <article class="person">
-          <div class="person-photo"><img src="assets/images/site/mint-lab-profile.png" alt="Profile placeholder" /></div>
+          <div class="person-photo"><img src="assets/images/profile/05_SJJ.jpg" alt="Profile placeholder" /></div>
           <div class="person-body">
             <h3 class="profile-name">Seojin Jeon<br>(전서진)</h3>
             <div class="profile-position">Undergraduate Intern</div>
@@ -150,7 +168,7 @@
           </div>
         </article>
         <article class="person">
-          <div class="person-photo"><img src="assets/images/site/mint-lab-profile.png" alt="Profile placeholder" /></div>
+          <div class="person-photo"><img src="assets/images/profile/06_SYK.png" alt="Profile placeholder" /></div>
           <div class="person-body">
             <h3 class="profile-name">Seyoung Kim<br>(김세영)</h3>
             <div class="profile-position">Undergraduate Intern</div>
@@ -159,7 +177,7 @@
           </div>
         </article>
         <article class="person">
-          <div class="person-photo"><img src="assets/images/site/mint-lab-profile.png" alt="Profile placeholder" /></div>
+          <div class="person-photo"><img src="assets/images/profile/07_JGH.png" alt="Profile placeholder" /></div>
           <div class="person-body">
             <h3 class="profile-name">Jeonggyu Hwang<br>(황정규)</h3>
             <div class="profile-position">Undergraduate Intern</div>
@@ -168,7 +186,7 @@
           </div>
         </article>
         <article class="person">
-          <div class="person-photo"><img src="assets/images/site/mint-lab-profile.png" alt="Profile placeholder" /></div>
+          <div class="person-photo"><img src="assets/images/profile/08_JSY.png" alt="Profile placeholder" /></div>
           <div class="person-body">
             <h3 class="profile-name">Jinsoo Yang<br>(양진수)</h3>
             <div class="profile-position">Undergraduate Intern</div>
@@ -207,5 +225,12 @@
       </div>
     </div>
   </footer>
+  <script>
+    document.querySelectorAll(".photo img, .person-photo img").forEach((image) => {
+      image.setAttribute("draggable", "false");
+      image.addEventListener("contextmenu", (event) => event.preventDefault());
+      image.addEventListener("dragstart", (event) => event.preventDefault());
+    });
+  </script>
 </body>
 </html>

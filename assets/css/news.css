@@ -144,7 +144,42 @@
     }
 
     header {
-      padding: 90px 0 40px;
+      position: relative;
+      overflow: hidden;
+      min-height: 340px;
+      padding: 84px 0 48px;
+      isolation: isolate;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url("../images/site/mint-lab-horizontal-logo.svg");
+      background-position: right max(20px, calc((100vw - var(--max)) / 2)) top 34px;
+      background-size: min(620px, 50vw) auto;
+      background-repeat: no-repeat;
+      opacity: .34;
+      -webkit-mask-image: linear-gradient(225deg, #000 0%, rgba(0,0,0,.78) 34%, rgba(0,0,0,.30) 68%, transparent 96%);
+      mask-image: linear-gradient(225deg, #000 0%, rgba(0,0,0,.78) 34%, rgba(0,0,0,.30) 68%, transparent 96%);
+      pointer-events: none;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(135deg, rgba(246, 251, 247, .96) 0%, rgba(246, 251, 247, .72) 42%, rgba(246, 251, 247, .18) 100%),
+        linear-gradient(180deg, rgba(246, 251, 247, 0) 0%, rgba(246, 251, 247, .22) 76%, var(--bg) 100%);
+      pointer-events: none;
+    }
+
+    header .container {
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -181,6 +216,8 @@
       align-self: center;
       border-radius: 12px;
       background: var(--surface-2);
+      -webkit-user-drag: none;
+      user-select: none;
     }
     .thumb-contain {
       object-fit: contain;
@@ -253,6 +290,16 @@
     .footer-inner { display: flex; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
 
     @media (max-width: 760px) {
+      header {
+        min-height: auto;
+        padding: 58px 0 34px;
+      }
+
+      header::before {
+        background-position: right 20px top 24px;
+        background-size: 430px auto;
+      }
+
       .news-item {
         grid-template-columns: 1fr;
       }

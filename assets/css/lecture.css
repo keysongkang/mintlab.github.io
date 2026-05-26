@@ -7,7 +7,7 @@
       --green: #008c3a;
       --green-soft: #dff5e7;
       --radius: 22px;
-      --max: 1080px;
+      --max: 1180px;
     }
 
     * { box-sizing: border-box; }
@@ -122,7 +122,42 @@
     }
 
     header {
-      padding: 90px 0 40px;
+      position: relative;
+      overflow: hidden;
+      min-height: 340px;
+      padding: 84px 0 48px;
+      isolation: isolate;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url("../images/profile/09_PI.png");
+      background-position: right top;
+      background-size: max(100%, 980px) auto;
+      background-repeat: no-repeat;
+      opacity: .72;
+      -webkit-mask-image: linear-gradient(225deg, #000 0%, rgba(0,0,0,.84) 34%, rgba(0,0,0,.38) 68%, transparent 96%);
+      mask-image: linear-gradient(225deg, #000 0%, rgba(0,0,0,.84) 34%, rgba(0,0,0,.38) 68%, transparent 96%);
+      pointer-events: none;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(135deg, rgba(246, 251, 247, .96) 0%, rgba(246, 251, 247, .70) 42%, rgba(246, 251, 247, .20) 100%),
+        linear-gradient(180deg, rgba(246, 251, 247, 0) 0%, rgba(246, 251, 247, .22) 74%, var(--bg) 100%);
+      pointer-events: none;
+    }
+
+    header .container {
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -146,51 +181,63 @@
       font-size: 1.08rem;
     }
 
-    .lecture-list {
+    .course-list {
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .lecture-card {
+    .course-card {
       display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 22px;
-      align-items: start;
+      grid-template-columns: 92px minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
+      padding: 22px;
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 22px;
       box-shadow: 0 10px 32px rgba(0,0,0,.04);
     }
 
-    .term {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0 14px;
-      border-radius: 999px;
-      background: var(--green-soft);
+    .course-code {
       color: var(--green);
       font-weight: 900;
-      text-align: center;
+      line-height: 1.25;
+      white-space: nowrap;
     }
 
-    .lecture-card h2 {
-      margin: 0 0 8px;
-      font-size: 1.35rem;
-      letter-spacing: -.03em;
+    .course-card h2 {
+      margin: 0 0 4px;
+      font-size: 1.18rem;
+      letter-spacing: 0;
+      line-height: 1.25;
     }
 
     .lecture-meta {
       color: var(--green);
       font-weight: 900;
-      margin-bottom: 8px;
+      margin-bottom: 0;
     }
 
-    .lecture-card p {
-      margin: 0;
-      color: var(--muted);
+    .term-list {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .term-list span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: .92rem;
+      font-weight: 900;
+      white-space: nowrap;
     }
 
     .empty-lecture {
@@ -211,6 +258,24 @@
     }
 
     @media (max-width: 860px) {
+      header {
+        min-height: auto;
+        padding: 58px 0 34px;
+      }
+
+      header::before {
+        background-position: right top;
+        background-size: auto 520px;
+        -webkit-mask-image: linear-gradient(225deg, #000 0%, rgba(0,0,0,.78) 30%, rgba(0,0,0,.34) 54%, transparent 78%);
+        mask-image: linear-gradient(225deg, #000 0%, rgba(0,0,0,.78) 30%, rgba(0,0,0,.34) 54%, transparent 78%);
+      }
+
+      header::after {
+        background:
+          linear-gradient(135deg, rgba(246, 251, 247, .96) 0%, rgba(246, 251, 247, .72) 46%, rgba(246, 251, 247, .34) 100%),
+          linear-gradient(180deg, rgba(246, 251, 247, .04) 0%, rgba(246, 251, 247, .62) 58%, var(--bg) 100%);
+      }
+
       .nav-inner {
         height: auto;
         min-height: 74px;
@@ -227,5 +292,13 @@
       }
 
       .brand-text span { display: none; }
-      .lecture-card { grid-template-columns: 1fr; }
+      .course-card {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        align-items: start;
+      }
+
+      .term-list {
+        justify-content: flex-start;
+      }
     }

@@ -6,6 +6,8 @@
   <title>MINT Lab | Materials Informatics & Theory Laboratory</title>
   <meta name="description" content="MINT Lab — Materials Informatics & Theory Laboratory. From microscopic interactions to AI-driven discovery of functional materials." />
   <link rel="stylesheet" href="assets/css/index.css" />
+  <link rel="stylesheet" href="assets/css/navigation.css" />
+  <script src="assets/js/navigation.js" defer></script>
 </head>
 <body>
   <nav class="nav">
@@ -137,9 +139,9 @@
         <div class="join reveal">
           <div>
             <h2>Join MINT Lab (재료정보이론연구실)</h2>
-            <p>We are looking for motivated graduate students interested in Computational Materials Science and AI-Materials. If you are passionate about research in related fields, please feel free to contact us via email. </br> 재료정보이론연구실에서는 연구에 열의를 가진 대학원생을 모집하고 있습니다. 본 연구실은 전산재료과학 및 소재인공지능 연구를 중심으로 다양한 연구를 수행하고 있습니다. 관련 분야에 관심이 있고 적극적으로 연구에 참여하고자 하는 학생들의 지원을 환영합니다. 관심 있는 학생은 이메일로 문의해 주시기 바랍니다.</p>
+            <p>MINT Lab is looking for motivated graduate students interested in Computational Materials Science and AI-Materials! If you are passionate about research in related fields, please feel free to contact us via email. </br> 재료정보이론연구실에서는 전산재료과학 및 소재인공지능을 활용한 다양한 신소재 연구에 대해 관심과 열의를 가진 대학원생을 모집하고 있습니다! 관련 분야에 관심이 있고 적극적으로 연구에 참여하고자 하는 학생들의 지원을 환영합니다. 관심 있는 학생은 이메일로 문의해 주시기 바랍니다.</p>
           </div>
-          <a class="button secondary" href="mailto:professor@example.edu">Contact PI</a>
+          <a class="button secondary" href="pi.html">Contact PI</a>
         </div>
       </div>
     </section>
@@ -163,17 +165,6 @@
   </footer> 
 
   <script>
-    const menuButton = document.querySelector('.menu-button');
-    const navLinks = document.querySelector('.nav-links');
-
-    menuButton.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-
-    navLinks.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -184,6 +175,14 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    function protectImage(image) {
+      image.setAttribute('draggable', 'false');
+      image.addEventListener('contextmenu', (event) => event.preventDefault());
+      image.addEventListener('dragstart', (event) => event.preventDefault());
+    }
+
+    document.querySelectorAll('.hero-logo img, .news-item img').forEach(protectImage);
     
     // Load recent news items (top 3) from news.html and insert into the news list.
     async function loadRecentNews() {
@@ -222,6 +221,7 @@
             if (!src) {
               imgEl.classList.add('thumb-contain');
               imgEl.src = defaultNewsImageUrl;
+              protectImage(imgEl);
               return;
             }
             try {
@@ -238,6 +238,8 @@
               imgEl.classList.add('thumb-contain');
               imgEl.src = defaultNewsImageUrl;
             };
+
+            protectImage(imgEl);
           });
 
           container.appendChild(clone);

@@ -8,7 +8,7 @@
       --green-soft: #dff5e7;
       --dark: #07130e;
       --radius: 24px;
-      --max: 1080px;
+      --max: 1180px;
     }
 
     * { box-sizing: border-box; }
@@ -128,10 +128,6 @@
       overflow: hidden;
       min-height: 520px;
       padding: 120px 0 86px;
-      background-image: url("../images/profile/02_PI.png");
-      background-position: center top;
-      background-size: 100% auto;
-      background-repeat: no-repeat;
       isolation: isolate;
     }
 
@@ -139,18 +135,26 @@
       content: "";
       position: absolute;
       inset: 0;
-      z-index: -2;
-      background: rgba(246, 251, 247, .22);
+      z-index: 0;
+      background-image: url("../images/profile/02_PI.png");
+      background-position: center top;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      opacity: .72;
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 54%, rgba(0,0,0,.48) 70%, transparent 88%);
+      mask-image: linear-gradient(180deg, #000 0%, #000 54%, rgba(0,0,0,.48) 70%, transparent 88%);
+      pointer-events: none;
     }
 
     header::after {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: -1;
+      z-index: 0;
       background:
-        linear-gradient(90deg, rgba(246, 251, 247, .86) 0%, rgba(246, 251, 247, .52) 46%, rgba(246, 251, 247, .10) 100%),
-        linear-gradient(180deg, rgba(246, 251, 247, 0) 0%, rgba(246, 251, 247, .08) 42%, rgba(246, 251, 247, .72) 68%, var(--bg) 88%, var(--bg) 100%);
+        linear-gradient(90deg, rgba(246, 251, 247, .88) 0%, rgba(246, 251, 247, .58) 46%, rgba(246, 251, 247, .18) 100%),
+        linear-gradient(180deg, rgba(246, 251, 247, .06) 0%, rgba(246, 251, 247, .14) 42%, rgba(246, 251, 247, .76) 68%, var(--bg) 88%, var(--bg) 100%);
+      pointer-events: none;
     }
 
     .profile-hero {
@@ -245,6 +249,21 @@
       font-size: .9rem;
     }
 
+    .inline-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 24px;
+      margin-left: 8px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: .82rem;
+      font-weight: 900;
+      vertical-align: 1px;
+    }
+
     .profile-section {
       margin-top: 28px;
       padding: 28px;
@@ -274,9 +293,10 @@
 
     .timeline-item {
       display: grid;
-      grid-template-columns: 136px 1fr;
+      grid-template-columns: 136px minmax(0, 1fr) 112px;
       gap: 18px;
-      align-items: start;
+      align-items: center;
+      min-height: 92px;
     }
 
     .timeline-date {
@@ -295,7 +315,7 @@
     .timeline-detail span {
       display: block;
       margin-top: 3px;
-      color: var(--muted);
+      color: var(--green);
       font-weight: 650;
     }
 
@@ -308,8 +328,22 @@
       font-weight: 600;
     }
 
+    .institution-logo {
+      width: 104px;
+      max-height: 72px;
+      object-fit: contain;
+      justify-self: end;
+      align-self: center;
+    }
+
     .timeline.compact {
       gap: 10px;
+    }
+
+    .timeline.compact .timeline-item {
+      grid-template-columns: 136px 1fr;
+      min-height: auto;
+      align-items: start;
     }
 
     .timeline.compact .timeline-detail strong {
@@ -354,9 +388,31 @@
     }
 
     @media (max-width: 760px) {
+      header {
+        min-height: auto;
+      }
+
+      header::before {
+        background-size: auto 520px;
+        -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 32%, rgba(0,0,0,.36) 48%, transparent 64%);
+        mask-image: linear-gradient(180deg, #000 0%, #000 32%, rgba(0,0,0,.36) 48%, transparent 64%);
+      }
+
+      header::after {
+        background:
+          linear-gradient(180deg, rgba(246, 251, 247, .12) 0%, rgba(246, 251, 247, .48) 30%, rgba(246, 251, 247, .92) 52%, var(--bg) 68%, var(--bg) 100%),
+          linear-gradient(90deg, rgba(246, 251, 247, .90) 0%, rgba(246, 251, 247, .64) 52%, rgba(246, 251, 247, .34) 100%);
+      }
+
       .profile-hero,
       .timeline-item {
         grid-template-columns: 1fr;
+      }
+
+      .institution-logo {
+        justify-self: start;
+        width: 96px;
+        max-height: 64px;
       }
 
       h1 {

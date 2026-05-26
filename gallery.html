@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MINT Lab | Gallery</title>
   <link rel="stylesheet" href="assets/css/gallery.css" />
+  <link rel="stylesheet" href="assets/css/navigation.css" />
+  <script src="assets/js/navigation.js" defer></script>
 </head>
 <body>
   <nav class="nav">
@@ -16,6 +18,7 @@
           <span>Materials Informatics & Theory Laboratory</span>
         </span>
       </a>
+      <button class="menu-button" aria-label="Open navigation">Menu</button>
       <div class="nav-links">
         <a href="research.html">Research</a>
         <a href="people.html">People</a>
@@ -43,7 +46,10 @@
     <div class="container">
       <h1>MINT Lab Gallery</h1>
       <div class="highlight-line">재료정보이론연구실 추억 사진첩</div>
-      <p class="lead">Photos from MINT Lab activities, meetings, presentations, and shared milestones.</p>
+      <p class="lead">
+        Photos from MINT Lab activities, meetings, presentations, and shared milestones.<br />
+        재료정보이론연구실의 다양한 연구실 활동과 미팅, 발표, 그리고 함께한 즐거운 순간들을 담은 사진들입니다.
+      </p>
     </div>
   </header>
 
@@ -82,9 +88,9 @@
   <script>
     const photos = [
       { src: "gallery/20260514_0.png", caption: "스승의날 (May 14, 2026)" },
-      { src: "assets/images/site/mint-lab-horizontal-logo.png", caption: "앞으로 있을 추억" },
-      { src: "assets/images/site/mint-lab-horizontal-logo.png", caption: "앞으로 있을 추억" },
-      { src: "assets/images/site/mint-lab-horizontal-logo.png", caption: "앞으로 있을 추억" },
+      { src: "assets/images/site/mint-lab-square-logo.svg", caption: "앞으로 있을 추억" },
+      { src: "assets/images/site/mint-lab-square-logo.svg", caption: "앞으로 있을 추억" },
+      { src: "assets/images/site/mint-lab-square-logo.svg", caption: "앞으로 있을 추억" },
     ];
 
     const grid = document.querySelector("#gallery-grid");

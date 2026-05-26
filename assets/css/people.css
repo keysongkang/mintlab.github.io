@@ -7,7 +7,7 @@
       --green: #008c3a;
       --green-soft: #dff5e7;
       --radius: 24px;
-      --max: 1080px;
+      --max: 1180px;
     }
 
     * { box-sizing: border-box; }
@@ -125,12 +125,8 @@
     header {
       position: relative;
       overflow: hidden;
-      min-height: 420px;
-      padding: 118px 0 78px;
-      background-image: url("../images/profile/02_PI.png");
-      background-position: center top;
-      background-size: 100% auto;
-      background-repeat: no-repeat;
+      min-height: 410px;
+      padding: 92px 0 92px;
       isolation: isolate;
     }
 
@@ -138,18 +134,26 @@
       content: "";
       position: absolute;
       inset: 0;
-      z-index: -2;
-      background: rgba(246, 251, 247, .22);
+      z-index: 0;
+      background-image: url("../images/profile/02_PI.png");
+      background-position: center top;
+      background-size: max(100%, 980px) auto;
+      background-repeat: no-repeat;
+      opacity: .72;
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 54%, rgba(0,0,0,.48) 70%, transparent 88%);
+      mask-image: linear-gradient(180deg, #000 0%, #000 54%, rgba(0,0,0,.48) 70%, transparent 88%);
+      pointer-events: none;
     }
 
     header::after {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: -1;
+      z-index: 0;
       background:
-        linear-gradient(90deg, rgba(246, 251, 247, .88) 0%, rgba(246, 251, 247, .58) 46%, rgba(246, 251, 247, .14) 100%),
-        linear-gradient(180deg, rgba(246, 251, 247, 0) 0%, rgba(246, 251, 247, .08) 42%, rgba(246, 251, 247, .72) 68%, var(--bg) 88%, var(--bg) 100%);
+        linear-gradient(90deg, rgba(246, 251, 247, .88) 0%, rgba(246, 251, 247, .58) 46%, rgba(246, 251, 247, .18) 100%),
+        linear-gradient(180deg, rgba(246, 251, 247, .06) 0%, rgba(246, 251, 247, .12) 46%, rgba(246, 251, 247, .68) 74%, var(--bg) 94%, var(--bg) 100%);
+      pointer-events: none;
     }
 
     header .container {
@@ -187,7 +191,7 @@
     }
 
     .section-title {
-      margin: 48px 0 20px;
+      margin: 28px 0 20px;
       font-size: 2rem;
       letter-spacing: -.00em;
     }
@@ -218,6 +222,8 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+      -webkit-user-drag: none;
+      user-select: none;
     }
 
     .profile-name {
@@ -308,6 +314,11 @@
       border-bottom: 1px solid var(--line);
     }
 
+    .person-photo img[src*="mint-lab-profile"] {
+      object-fit: contain;
+      padding: 18px;
+    }
+
     .person-body {
       display: grid;
       padding: 20px;
@@ -352,6 +363,23 @@
     }
 
     @media (max-width: 760px) {
+      header {
+        min-height: auto;
+        padding: 58px 0 64px;
+      }
+
+      header::before {
+        background-size: auto 520px;
+        -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 32%, rgba(0,0,0,.36) 48%, transparent 64%);
+        mask-image: linear-gradient(180deg, #000 0%, #000 32%, rgba(0,0,0,.36) 48%, transparent 64%);
+      }
+
+      header::after {
+        background:
+          linear-gradient(180deg, rgba(246, 251, 247, .12) 0%, rgba(246, 251, 247, .48) 30%, rgba(246, 251, 247, .92) 52%, var(--bg) 68%, var(--bg) 100%),
+          linear-gradient(90deg, rgba(246, 251, 247, .90) 0%, rgba(246, 251, 247, .64) 52%, rgba(246, 251, 247, .34) 100%);
+      }
+
       .pi-card, .people-grid { grid-template-columns: 1fr; }
       .career-item { grid-template-columns: 1fr; gap: 2px; }
       .nav-inner { gap: 16px; }

@@ -6,6 +6,8 @@
   <title>Research | MINT Lab</title>
   <meta name="description" content="MINT Lab research — microscopic materials physics, AI-driven discovery, magnetic memory, thermoelectrics, and computational workflows." />
   <link rel="stylesheet" href="assets/css/research.css" />
+  <link rel="stylesheet" href="assets/css/navigation.css" />
+  <script src="assets/js/navigation.js" defer></script>
 </head>
 <body>
   <nav class="nav">
@@ -17,6 +19,7 @@
           <span>Materials Informatics & Theory Laboratory</span>
         </span>
       </a>
+      <button class="menu-button" aria-label="Open navigation">Menu</button>
       <div class="nav-links">
         <a class="active" href="research.html">Research</a>
         <a href="people.html">People</a>
@@ -44,8 +47,11 @@
     <header class="page-hero">
       <div class="container">
         <div class="eyebrow"><span class="dot"></span> Research at MINT Lab</div>
-        <h1>From microscopic interactions to <span class="highlight">AI-driven materials discovery</span>.</h1>
-        <p class="lead">We combine first-principles theory, atomistic simulation, transport modeling, and materials AI to understand emergent properties and discover next-generation functional materials.</p>
+        <h1>Microscopic interactions <span class="highlight">Macroscopic phenomena</span></h1>
+        <p class="lead">
+          We utilize AI-assisted computational materials science methodologies to analyze microscopic interactions at the atomic level in order to understand the emergent macroscopic properties of materials.<br />
+          재료정보이론연구실은 전산재료과학 방법론과 소재 인공지능 도구를 통해 원자 단위의 미시적 상호작용을 분석하여 소재의 거시적 물성 현상을 이해하는 연구를 수행합니다.
+        </p>
       </div>
     </header>
 
@@ -54,17 +60,17 @@
         <div class="concept">
           <div>
             <div class="kicker" style="color:#7ef0a9;">Core Concept</div>
-            <h2>Electron · Lattice · Spin · Ion</h2>
-            <p>Many advanced materials are governed by coupled microscopic degrees of freedom. MINT Lab investigates how these interactions create macroscopic functionality such as memory, energy conversion, transport, and switching.</p>
+            <h2 class="concept-title">
+              Electron · Lattice · Spin · Ion<br />
+              (전자 · 격자 · 스핀 · 이온)
+            </h2>
+            <p>
+              Modern advanced materials are governed by coupled microscopic degrees of freedom. MINT Lab investigates how these interactions create macroscopic functionality and provide insights into their behavior and physical origins. MINT Lab's main methodology consists of computational materials science approaches with AI-Materials tools.<br />
+              첨단 신소재는 전자, 격자, 스핀, 이온 등 다양한 미시적 상호작용에 의해 거시적 기능이 발현됩니다. 재료정보이론연구실은 이러한 상호작용이 어떻게 거시적 물성으로 이어지는지 탐구하여 그 거동 발현과 물리적 기원에 대한 통찰을 제공합니다. 재료정보이론연구실은 소재 인공지능 도구들과 전산재료 방법론을 활용하여 이러한 현상에 대한 연구를 수행합니다.
+            </p>
           </div>
-          <div class="interaction-map" aria-label="electron lattice spin interaction map">
-            <div class="line a"></div>
-            <div class="line b"></div>
-            <div class="line c"></div>
-            <div class="node electron">Electron</div>
-            <div class="node lattice">Lattice</div>
-            <div class="node spin">Spin</div>
-            <div class="node center">Emergent<br />Properties</div>
+          <div class="interaction-map">
+            <img src="assets/images/research/interactions.svg" alt="Electron, lattice, spin, and ion interactions" />
           </div>
         </div>
       </div>
@@ -75,26 +81,38 @@
         <div class="section-head">
           <div>
             <div class="kicker">Research Areas</div>
-            <h2>Three connected research directions.</h2>
+            <h2>
+              Computational Materials Science & AI-Materials<br />
+              (전산재료 방법론 & 소재 인공지능 도구 활용 연구)
+            </h2>
           </div>
           <p>Our projects connect fundamental materials physics with computational design and AI-accelerated workflows.</p>
         </div>
 
         <div class="research-grid">
-          <article class="card">
-            <div class="card-icon">01</div>
-            <h3>Magnetic Memory & Spintronics</h3>
-            <p>We study metallic antiferromagnets, spin-related transport, and microscopic mechanisms for next-generation magnetic memory and low-power devices.</p>
+          <article class="area-card" tabindex="0">
+            <img src="assets/images/research/transport.png" alt="Transport research area" />
+            <div class="area-label"><span>Transport</span><em>전도현상</em></div>
+            <p>
+              Predicting and engineering heat, charge, & ion transport in advanced materials<br /><br />
+              첨단 소재의 열, 전하, 이온 전도 특성에 대한 예측과 분석 및 제어 연구
+            </p>
           </article>
-          <article class="card">
-            <div class="card-icon">02</div>
-            <h3>Thermoelectric Materials</h3>
-            <p>We predict thermal and electronic transport properties to identify high-performance thermoelectric and doped semiconductor materials.</p>
+          <article class="area-card" tabindex="0">
+            <img src="assets/images/research/magnetism.png" alt="Magnetism research area" />
+            <div class="area-label"><span>Magnetism</span><em>자기물성</em></div>
+            <p>
+              Understanding spin dynamics and magnetic interactions to uncover magnetic phenomena and enable next-generation magnetic applications<br /><br />
+              자성 물질의 스핀 역학과 자기 상호작용 분석을 통한 자기물성 이해 및 자성 응용 개발
+            </p>
           </article>
-          <article class="card">
-            <div class="card-icon">03</div>
-            <h3>AI-Accelerated Simulation</h3>
-            <p>We develop machine-learning potentials, deep Hamiltonian models, and active-learning workflows to accelerate expensive materials simulations.</p>
+          <article class="area-card" tabindex="0">
+            <img src="assets/images/research/structure.png" alt="Structural diversity research area" />
+            <div class="area-label"><span>Structural<br />Diversity</span><em>구조 다양성</em></div>
+            <p>
+              Exploring diverse atomic structures, and their energetic impact on electronic, phonon, and magnon properties<br /><br />
+              구조 다양성이 소재의 전자, 격자(포논), 스핀(마그논) 물성에 미치는 영향 탐구
+            </p>
           </article>
         </div>
       </div>
@@ -104,32 +122,62 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="kicker">Workflow</div>
-            <h2>Discovery loop.</h2>
+            <div class="kicker">Novel Computational Approach</div>
+            <h2>Methodology Development</h2>
           </div>
           <p>We use simulation and AI not as separate tools, but as a closed-loop framework for generating, testing, and refining materials hypotheses.</p>
         </div>
 
         <div class="workflow">
           <div class="step">
-            <span>1</span>
-            <h3>Theory</h3>
-            <p>Identify mechanisms, descriptors, and design principles from microscopic physics.</p>
+            <img class="step-image" src="assets/images/research/methodology.png" alt="First-principles methodology development" />
+            <div class="step-body">
+              <h3>
+                Environment-Dependent<br />First-Principles Methods Development<br />
+                환경조건을 고려한 제일원리 방법론 개발
+              </h3>
+              <p>Developing first-principles computational methods to predict materials properties under applied magnetic field and temperature conditions</p>
+            </div>
+            <div class="step-refs">
+              <div class="step-ref">
+                <strong>Magnetic-field effects on magnetic properties</strong>
+                <span>자성 물성에 대한 자기장 영향</span>
+                <em>K Kang, K Yang, K Puthalath, et. al., Phys. Rev. B 105, 184404 (2022).</em>
+              </div>
+              <div class="step-ref">
+                <strong>Temperature effects on magnetic properties</strong>
+                <span>자성 물성에 대한 온도 영향</span>
+                <em>K Kang, DG Cahill, A Schleife, Phys. Rev. B 113, 184408 (2026).</em>
+              </div>
+            </div>
           </div>
           <div class="step">
-            <span>2</span>
-            <h3>Simulation</h3>
-            <p>Predict structure, stability, transport, phonon, magnon, and electronic properties.</p>
-          </div>
-          <div class="step">
-            <span>3</span>
-            <h3>AI Models</h3>
-            <p>Train machine-learning models to accelerate costly calculations and explore larger materials spaces.</p>
-          </div>
-          <div class="step">
-            <span>4</span>
-            <h3>Collaboration</h3>
-            <p>Work closely with experimental groups to validate predictions and refine design strategies.</p>
+            <img class="step-image" src="assets/images/research/ai_workflow.png" alt="AI-assisted workflow development" />
+            <div class="step-body">
+              <h3>
+                AI-Assisted/Guided <br />
+                Computational Workflows Development<br />
+                소재인공지능 도입 및 워크플로우 개발
+              </h3>
+              <p>Building AI-assisted workflows that accelerate costly simulations, explore large materials spaces, and refine materials hypotheses through iterative feedback.</p>
+            </div>
+            <div class="step-refs">
+              <div class="step-ref">
+                <strong>Active-learning workflow for machine-learning potentials (MLP)</strong>
+                <span>능동학습 기반 기계학습 퍼텐셜 신뢰성 강화</span>
+                <em>K Kang, TAR Purcell, et. al., Phys. Rev. Materials 9, 063801 (2025).</em>
+              </div>
+              <div class="step-ref">
+                <strong>Accelerated thermal-conductivity prediction with MLPs</strong>
+                <span>기계학습 퍼텐셜 기반 열전도도 예측 가속화</span>
+                <em>S. Zhao, K. Kang*, M. Scheffler, DPG-SKM, HL 3.7 (2025).</em>
+              </div>
+              <div class="step-ref">
+                <strong>Accelerated electrical-conductivity prediction with deep Hamiltonian</strong>
+                <span>심층학습 헤밀토니언 기반 전기전도도 예측 가속화</span>
+                <em>J. Zhang, J. Quan, M. Scheffler, K. Kang*, DPG-SKM, HL 29.84 (2025).</em>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -139,8 +187,8 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="kicker">Current Focus</div>
-            <h2>Materials problems we care about.</h2>
+            <div class="kicker">Strong Cowork</div>
+            <h2>Selected Computation-Experiment Collaborations</h2>
           </div>
         </div>
 

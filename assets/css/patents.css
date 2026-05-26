@@ -7,7 +7,7 @@
       --green: #008c3a;
       --green-soft: #dff5e7;
       --radius: 22px;
-      --max: 1080px;
+      --max: 1180px;
     }
 
     * { box-sizing: border-box; }
@@ -122,7 +122,42 @@
     }
 
     header {
-      padding: 90px 0 40px;
+      position: relative;
+      overflow: hidden;
+      min-height: 500px;
+      padding: 90px 0 120px;
+      isolation: isolate;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url("../images/site/methodology.svg");
+      background-position: right max(20px, calc((100vw - var(--max)) / 2)) top 20px;
+      background-size: min(540px, 43vw) auto;
+      background-repeat: no-repeat;
+      opacity: .46;
+      -webkit-mask-image: linear-gradient(225deg, #000 0%, rgba(0,0,0,.82) 34%, rgba(0,0,0,.38) 68%, transparent 96%);
+      mask-image: linear-gradient(225deg, #000 0%, rgba(0,0,0,.82) 34%, rgba(0,0,0,.38) 68%, transparent 96%);
+      pointer-events: none;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(135deg, rgba(246, 251, 247, .96) 0%, rgba(246, 251, 247, .72) 42%, rgba(246, 251, 247, .18) 100%),
+        linear-gradient(180deg, rgba(246, 251, 247, 0) 0%, rgba(246, 251, 247, .20) 76%, var(--bg) 100%);
+      pointer-events: none;
+    }
+
+    header .container {
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -222,6 +257,16 @@
     }
 
     @media (max-width: 860px) {
+      header {
+        min-height: 420px;
+        padding: 70px 0 90px;
+      }
+
+      header::before {
+        background-position: right 20px top;
+        background-size: 410px auto;
+      }
+
       .nav-inner {
         height: auto;
         min-height: 74px;
