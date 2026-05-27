@@ -477,34 +477,64 @@
       font-weight: 800;
     }
 
-    .focus-list {
+    .collab-grid {
       display: grid;
-      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 18px;
     }
 
-    .focus-item {
+    .collab-card {
       display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 22px;
-      align-items: start;
+      grid-template-rows: 240px minmax(260px, 1fr);
       background: white;
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      overflow: hidden;
+      box-shadow: 0 14px 42px rgba(16,32,26,.06);
+      min-height: 500px;
     }
 
-    .focus-item strong {
-      color: var(--green);
-      font-size: 1.05rem;
+    .collab-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 8px;
+      background: white;
+      border-bottom: 1px solid var(--line);
     }
 
-    .focus-item h3 {
-      margin: 0 0 8px;
+    .collab-body {
+      display: grid;
+      align-content: start;
+      gap: 9px;
+      padding: 20px 22px 22px;
+      background: rgba(224, 246, 233, .45);
+    }
+
+    .collab-body h3 {
+      margin: 0;
       color: var(--dark);
-      letter-spacing: -.03em;
+      font-size: 1.06rem;
+      line-height: 1.25;
     }
 
-    .focus-item p { margin: 0; color: var(--muted); }
+    .collab-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .collab-body em {
+      color: var(--green);
+      font-size: .84rem;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 1.35;
+    }
 
     .join {
       border-radius: var(--radius-xl);
@@ -546,7 +576,7 @@
     @media (max-width: 920px) {
       .concept, .join { grid-template-columns: 1fr; }
       .research-grid, .workflow { grid-template-columns: repeat(2, 1fr); }
-      .focus-item { grid-template-columns: 1fr; }
+      .collab-grid { grid-template-columns: repeat(2, 1fr); }
       .nav-links { gap: 14px; font-size: .92rem; }
     }
 
@@ -558,7 +588,7 @@
         background-size: 430px auto;
       }
       .section-head { flex-direction: column; align-items: start; }
-      .research-grid, .workflow { grid-template-columns: 1fr; }
+      .research-grid, .workflow, .collab-grid { grid-template-columns: 1fr; }
       .concept, .join { padding: 30px; }
       .concept-title { white-space: normal; }
       .brand-text span { display: none; }
