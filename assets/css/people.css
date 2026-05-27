@@ -353,6 +353,52 @@
       color: var(--muted);
     }
 
+    #join {
+      margin-top: 54px;
+    }
+
+    .join {
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(0,140,58,.95), rgba(0,92,41,.96)),
+        var(--green);
+      color: white;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 24px;
+      box-shadow: 0 28px 80px rgba(0, 70, 32, 0.12);
+    }
+
+    .join h2 {
+      color: white;
+      margin: 0 0 12px;
+      font-size: clamp(2.1rem, 3.5vw, 3.65rem);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .join p {
+      max-width: 920px;
+      margin: 0;
+      color: rgba(255,255,255,.78);
+    }
+
+    .join .join-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 19px;
+      border-radius: 999px;
+      font-weight: 900;
+      background: white;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
     .footer-inner { display: flex; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
 
     footer {
@@ -381,6 +427,13 @@
       }
 
       .pi-card, .people-grid { grid-template-columns: 1fr; }
+      .join {
+        grid-template-columns: 1fr;
+        padding: 30px;
+      }
+      .join .join-button {
+        justify-self: start;
+      }
       .career-item { grid-template-columns: 1fr; gap: 2px; }
       .nav-inner { gap: 16px; }
       .nav-links { gap: 14px; font-size: .92rem; }
