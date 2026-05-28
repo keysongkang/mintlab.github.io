@@ -139,5 +139,12 @@
       </div>
     </div>
   </footer>
+  <script>
+    document.querySelectorAll(".theme-image").forEach((image) => {
+      image.setAttribute("draggable", "false");
+      image.addEventListener("contextmenu", (event) => event.preventDefault());
+      image.addEventListener("dragstart", (event) => event.preventDefault());
+    });
+  </script>
 </body>
 </html>

@@ -436,6 +436,9 @@
   </footer>
   <script>
     document.querySelectorAll(".paper").forEach((paper) => {
+      paper.addEventListener("contextmenu", (event) => event.preventDefault());
+      paper.addEventListener("dragstart", (event) => event.preventDefault());
+
       const paperImage = paper.style.getPropertyValue("--paper-image").trim();
       const match = paperImage.match(/^url\(["']?(.+?)["']?\)$/);
 

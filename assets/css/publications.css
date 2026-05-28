@@ -218,6 +218,8 @@
       margin-bottom: 14px;
       box-shadow: 0 10px 32px rgba(0,0,0,.04);
       overflow: hidden;
+      -webkit-user-drag: none;
+      user-select: none;
     }
 
     .paper > * {
