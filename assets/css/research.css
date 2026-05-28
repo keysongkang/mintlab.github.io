@@ -221,13 +221,32 @@
     h2 {
       margin: 8px 0 0;
       color: var(--dark);
-      font-size: clamp(2rem, 3.2vw, 3.45rem);
-      line-height: 1.05;
-      letter-spacing: -.055em;
+      font-size: clamp(2rem, 2.85vw, 3.15rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .collab-heading {
+      font-size: clamp(2rem, 2.85vw, 3.15rem);
+    }
+
+    .collab-heading span {
+      white-space: nowrap;
+    }
+
+    .theme-title-link {
+      display: inline-block;
+      transition: color .18s ease;
+    }
+
+    .theme-title-link:hover,
+    .theme-title-link:focus-visible {
+      color: var(--green);
     }
 
     .section-head p {
-      max-width: 980px;
+      width: 100%;
+      max-width: none;
       margin: 0;
       color: var(--muted);
       line-height: 1.55;
@@ -261,10 +280,11 @@
     .concept > * { position: relative; z-index: 1; }
     .concept h2 { color: white; margin: 0 0 14px; }
     .concept-title {
-      letter-spacing: .015em;
+      letter-spacing: 0;
       word-spacing: .04em;
       white-space: nowrap;
-      font-size: clamp(1.9rem, 2.7vw, 3rem);
+      font-size: clamp(2rem, 2.85vw, 3.15rem);
+      line-height: 1.08;
     }
     .concept p { margin: 0; color: rgba(255,255,255,.74); }
 
@@ -289,12 +309,14 @@
 
     .area-card {
       position: relative;
+      display: block;
       aspect-ratio: 1 / 1;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       background: var(--dark);
       box-shadow: 0 14px 42px rgba(16,32,26,.08);
+      cursor: pointer;
     }
 
     .area-card img {
@@ -372,23 +394,27 @@
     }
 
     .area-card:hover img,
-    .area-card:focus-within img {
+    .area-card:focus img,
+    .area-card:focus-visible img {
       filter: blur(5px);
       transform: scale(1.04);
     }
 
     .area-card:hover::after,
-    .area-card:focus-within::after {
+    .area-card:focus::after,
+    .area-card:focus-visible::after {
       background: rgba(7, 19, 14, .28);
     }
 
     .area-card:hover p,
-    .area-card:focus-within p {
+    .area-card:focus p,
+    .area-card:focus-visible p {
       opacity: 1;
     }
 
     .area-card:hover .area-label,
-    .area-card:focus-within .area-label {
+    .area-card:focus .area-label,
+    .area-card:focus-visible .area-label {
       opacity: 0;
       transform: translate(-50%, -48%);
     }
@@ -429,8 +455,9 @@
     .step-body h3 {
       margin: 0 0 12px;
       color: var(--dark);
-      font-size: 1.34rem;
-      line-height: 1.25;
+      font-size: clamp(1.12rem, 1.28vw, 1.34rem);
+      line-height: 1.28;
+      letter-spacing: 0;
     }
 
     .step-body p {
@@ -516,8 +543,9 @@
     .collab-body h3 {
       margin: 0;
       color: var(--dark);
-      font-size: 1.06rem;
-      line-height: 1.25;
+      font-size: clamp(1.12rem, 1.28vw, 1.34rem);
+      line-height: 1.28;
+      letter-spacing: 0;
     }
 
     .collab-body p {
@@ -612,5 +640,6 @@
       .interaction-map { min-height: 220px; }
       .interaction-map img { width: min(100%, 300px); }
       .concept-title { white-space: normal; }
+      .collab-heading span { white-space: normal; }
       .brand-text span { display: none; }
     }
